@@ -271,28 +271,28 @@ export const services: Service[] = [
     path: routes.preventive.path,
     label: "Preventive Dentistry",
     teaser:
-      "Keep your smile healthy for life with regular check-ups, professional cleanings and prevention for the whole family.",
+      "Keep your smile healthy for life with regular check-ups, professional cleanings and early prevention.",
     icon: "shield",
     seoTitle: "Preventive Dentistry Pretoria | Check-ups & Cleanings | Smile Connection",
     seoDescription:
-      "Preventive dentistry in Pretoria — dental check-ups, professional cleanings, fissure sealing and fluoride at Smile Connection Dental Studio, Newlands. Family dental care. Book today.",
+      "Preventive dentistry in Pretoria — dental check-ups, professional cleanings, fissure sealing and fluoride at Smile Connection Dental Studio, Newlands. Book today.",
     ogTitle: "Preventive Dentistry in Pretoria — Check-ups & Cleanings",
     ogDescription:
-      "Keep your family's smiles healthy with check-ups and cleanings at Smile Connection Dental Studio in Newlands, Pretoria.",
+      "Keep your smile healthy with check-ups and cleanings at Smile Connection Dental Studio in Newlands, Pretoria.",
     h1: "Preventive Dentistry in Pretoria",
     heroSubtitle:
-      "Prevention is the foundation of a healthy smile. Our Newlands studio offers check-ups, professional cleanings and family dental care to keep problems away.",
+      "Prevention is the foundation of a healthy smile. Our Newlands studio offers check-ups, professional cleanings and preventive care to keep problems away.",
     heroImageAlt:
       "PLACEHOLDER — real photo of a dental check-up or hygiene visit at Smile Connection Dental Studio, Pretoria",
     intro: [
       "The healthiest, most affordable dentistry is the kind that stops problems before they start. Preventive dentistry focuses on keeping your teeth and gums healthy through regular check-ups, professional cleanings and early detection of any issues.",
-      "At Smile Connection Dental Studio in Newlands, Pretoria, we care for the whole family — from children's first visits to adult check-ups. We generally recommend a dental check-up and cleaning every six months to keep your smile healthy for the long term.",
+      "At Smile Connection Dental Studio in Newlands, Pretoria, we focus on keeping your teeth and gums healthy for the long term. We generally recommend a dental check-up and cleaning every six months to catch any issues early.",
     ],
     whoFor: {
       title: "Who is preventive dentistry for?",
       points: [
-        "Everyone — children and adults alike benefit from regular dental care",
-        "Families looking for a dental home for the whole household",
+        "Everyone benefits from regular dental care",
+        "Anyone looking for a long-term dental home in Pretoria East",
         "Anyone who hasn't had a check-up and clean in the last six months",
         "Patients who want to catch small problems before they become big ones",
       ],
@@ -301,7 +301,7 @@ export const services: Service[] = [
       { title: "Catch problems early", text: "Regular check-ups detect decay and gum issues while they're still small and simple to treat." },
       { title: "Healthier gums", text: "Professional cleanings remove plaque and tartar that brushing alone can't reach." },
       { title: "Save time & money", text: "Prevention helps you avoid more involved and costly treatment down the line." },
-      { title: "Care for the whole family", text: "From children to adults, we provide friendly preventive care for every age." },
+      { title: "Friendly, gentle care", text: "We provide relaxed, modern preventive care in a calm and welcoming environment." },
     ],
     process: [
       { step: "01", title: "Comprehensive check-up", text: "We examine your teeth, gums and mouth to spot any early signs of problems." },
@@ -314,12 +314,11 @@ export const services: Service[] = [
       "Professional teeth cleaning (scale & polish)",
       "Fissure sealing to protect against decay",
       "Fluoride treatments",
-      "Children's and family dental care",
+      "Personalised oral-hygiene advice",
     ],
     faqs: [
       { q: "How often should I visit the dentist?", a: "For most people we recommend a check-up and professional cleaning every six months. This allows us to catch any problems early and keep your teeth and gums healthy." },
-      { q: "Do you see children?", a: "Yes — Smile Connection is a family dental studio offering care from child dentistry through to adult treatment. We're happy to welcome the whole family." },
-      { q: "What is fissure sealing?", a: "Fissure sealants are protective coatings applied to the grooves of back teeth to help prevent decay. They're a simple, effective way to protect teeth — especially in children." },
+      { q: "What is fissure sealing?", a: "Fissure sealants are protective coatings applied to the grooves of back teeth to help prevent decay. They're a simple, effective way to protect teeth from cavities over time." },
       { q: "Why are professional cleanings important?", a: "Even with great brushing at home, plaque can harden into tartar that only a professional clean can remove. Regular cleanings keep your gums healthy and your smile fresh." },
     ],
     related: ["restorative-treatments", "smile-makeover", "root-canal-treatment"],

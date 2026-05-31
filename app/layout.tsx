@@ -21,13 +21,12 @@ export const metadata: Metadata = {
     "dentist in Newlands Pretoria",
     "dentist in Pretoria",
     "dental practice Newlands",
-    "family dentist Pretoria",
     "cosmetic dentist Pretoria",
     "Smile Connection Dental Studio",
   ],
   icons: {
-    icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
-    apple: "/favicon.svg",
+    icon: [{ url: "/favicon-32x32.png", type: "image/png", sizes: "32x32" }],
+    apple: "/apple-touch-icon.png",
   },
   robots: { index: true, follow: true },
 };

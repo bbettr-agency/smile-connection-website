@@ -5,9 +5,9 @@ import { routes } from "@/lib/routes";
 import { PhoneIcon, WhatsAppIcon, CalendarIcon, CheckIcon, AlertIcon } from "@/components/ui/Icons";
 
 const heroTrust = [
-  "Trusted family dental studio since 2009",
+  "Trusted Newlands dental studio since 2009",
   "HPCSA-registered dentists",
-  "Child dentistry to cosmetic makeovers",
+  "Check-ups to cosmetic makeovers",
 ];
 
 export function Hero() {
@@ -23,7 +23,7 @@ export function Hero() {
             <span className="text-brand-green-dark">healthy, confident smiles</span>
           </h1>
           <p className="max-w-xl text-base leading-relaxed text-slate-600 sm:text-lg">
-            {site.shortName} is a family dental studio in Newlands, Pretoria. From
+            {site.shortName} is a dental studio in Newlands, Pretoria. From
             preventive check-ups to advanced cosmetic makeovers, we help you look
             better, feel better and smile brighter.
           </p>

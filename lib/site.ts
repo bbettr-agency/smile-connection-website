@@ -16,14 +16,12 @@ export const site = {
   tagline: "Look Better. Feel Better. Smile Brighter.",
   // Verified positioning from the existing website.
   positioning:
-    "A premium family dental studio in Newlands, Pretoria — offering the full spectrum of care from child dentistry to advanced cosmetic smile makeovers.",
+    "A premium dental studio in Newlands, Pretoria — offering the full spectrum of care from routine check-ups to advanced cosmetic smile makeovers.",
   founded: "2009",
   url: "https://smileconnection.co.za",
-  // Logo lives in /public. A branded PLACEHOLDER (/logo.svg) ships with the
-  // template — replace it with the official artwork (e.g. /public/logo.png)
-  // and update this path.
-  logo: "/logo.svg",
-  ogImage: "/og-image.svg", // PLACEHOLDER: replace with a real branded JPG/PNG share image (1200x630).
+  // Logo lives in /public. This is the official Smile Connection artwork.
+  logo: "/logo.png",
+  ogImage: "/og-image.png", // Branded share image (1200x630) generated from the official logo.
 
   contact: {
     phoneDisplay: "079 471 6319",
@@ -119,9 +117,9 @@ export const site = {
 
   // High-trust, verifiable signals only (no invented stats/awards).
   trustBadges: [
-    { label: "Established 2009", sub: "Trusted family dental studio" },
+    { label: "Established 2009", sub: "Trusted Newlands dental studio" },
     { label: "HPCSA Registered", sub: "Qualified dental professionals" },
-    { label: "Child to Cosmetic", sub: "Full-spectrum dental care" },
+    { label: "Check-up to Cosmetic", sub: "Full-spectrum dental care" },
     { label: "Newlands, Pretoria", sub: "Convenient Pretoria-East location" },
   ],
 

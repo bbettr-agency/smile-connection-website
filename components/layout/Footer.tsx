@@ -93,7 +93,17 @@ export function Footer() {
             <span aria-hidden="true">·</span>
             <span>Newlands, Pretoria</span>
             <span aria-hidden="true">·</span>
-            <span>Website by Bbettr Agency</span>
+            <span>
+              Designed by{" "}
+              <a
+                href="https://bbettragency.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-medium text-navy-100 underline-offset-2 transition-colors hover:text-white hover:underline"
+              >
+                Bbettr Agency
+              </a>
+            </span>
           </p>
         </div>
       </div>

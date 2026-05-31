@@ -15,9 +15,8 @@ import { faqSchema } from "@/lib/schema";
 import { routes } from "@/lib/routes";
 
 const homeFaqs = [
-  { q: "Where is Smile Connection Dental Studio located?", a: "We're at 197 Lois Ave, Newlands, Pretoria, 0081 — a convenient family dental practice in Pretoria East. You can call or WhatsApp us on 079 471 6319 to book." },
+  { q: "Where is Smile Connection Dental Studio located?", a: "We're at 197 Lois Ave, Newlands, Pretoria, 0081 — a convenient dental practice in Pretoria East. You can call or WhatsApp us on 079 471 6319 to book." },
   { q: "What are your opening hours?", a: "We're open Monday to Thursday from 08:00 to 17:00 and Friday from 08:00 to 13:00. We're closed on Saturdays and Sundays. For severe pain or trauma outside these hours, please phone 079 471 6319." },
-  { q: "Do you treat the whole family, including children?", a: "Yes. Smile Connection is a family dental studio offering the full spectrum of care — from child dentistry through to restorative and cosmetic treatment for adults." },
   { q: "What services do you offer?", a: "We offer preventive dentistry, restorative treatments, root canal treatment, tooth replacement (implants, bridges and dentures), smile makeovers and facial aesthetics. Visit our Services pages to learn more." },
   { q: "How do I book an appointment?", a: "The easiest ways are to call or WhatsApp us on 079 471 6319, or complete the booking form on our Contact Us page and we'll be in touch." },
 ];
@@ -26,10 +25,10 @@ export const metadata: Metadata = buildMetadata({
   path: routes.home.path,
   title: "Dentist in Newlands, Pretoria | Smile Connection Dental Studio",
   description:
-    "Smile Connection Dental Studio is a premium family dentist in Newlands, Pretoria. Preventive, restorative and cosmetic dentistry, implants, smile makeovers & more. Book today.",
+    "Smile Connection Dental Studio is a premium dentist in Newlands, Pretoria. Preventive, restorative and cosmetic dentistry, implants, smile makeovers & more. Book today.",
   ogTitle: "Smile Connection Dental Studio — Dentist in Newlands, Pretoria",
   ogDescription:
-    "Premium family dental care in Newlands, Pretoria. Book your appointment for check-ups, smile makeovers, implants and more.",
+    "Premium dental care in Newlands, Pretoria. Book your appointment for check-ups, smile makeovers, implants and more.",
 });
 
 export default function HomePage() {

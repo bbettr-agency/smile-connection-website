@@ -41,7 +41,7 @@ export default function ServicesPage() {
             <SectionHeading
               eyebrow="Our Dental Services"
               title="Comprehensive dental care in Newlands, Pretoria"
-              subtitle="From your child's first check-up to a complete smile makeover, Smile Connection Dental Studio offers the full spectrum of dental care under one roof — using modern materials and technology for comfortable, lasting results."
+              subtitle="From a routine check-up to a complete smile makeover, Smile Connection Dental Studio offers the full spectrum of dental care under one roof — using modern materials and technology for comfortable, lasting results."
             />
             <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
               <Button href={routes.contact.path} variant="primary" size="lg">

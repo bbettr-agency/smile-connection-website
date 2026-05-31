@@ -41,7 +41,7 @@ export default function ContactPage() {
                 align="left"
                 eyebrow="Contact Us"
                 title="Book your visit to Smile Connection"
-                subtitle="We'd love to welcome you to our family dental studio in Newlands, Pretoria. Reach out by phone, WhatsApp or the booking form — whatever's easiest for you."
+                subtitle="We'd love to welcome you to our dental studio in Newlands, Pretoria. Reach out by phone, WhatsApp or the booking form — whatever's easiest for you."
               />
 
               {/* Quick actions */}

@@ -16,17 +16,17 @@ import { routes } from "@/lib/routes";
 
 export const metadata: Metadata = buildMetadata({
   path: routes.about.path,
-  title: "About Us | Family Dentist in Newlands, Pretoria | Smile Connection",
+  title: "About Us | Dentist in Newlands, Pretoria | Smile Connection",
   description:
-    "Meet Smile Connection Dental Studio — a family dental practice in Newlands, Pretoria, caring for smiles since 2009. Meet Dr Eugene Kleynhans and our friendly dental team.",
+    "Meet Smile Connection Dental Studio — a dental practice in Newlands, Pretoria, caring for smiles since 2009. Meet Dr Eugene Kleynhans and our friendly dental team.",
   ogTitle: "About Smile Connection Dental Studio, Newlands Pretoria",
   ogDescription:
-    "A trusted family dental studio in Newlands, Pretoria since 2009. Meet Dr Eugene Kleynhans and our team, and discover our caring, aesthetic approach.",
+    "A trusted dental studio in Newlands, Pretoria since 2009. Meet Dr Eugene Kleynhans and our team, and discover our caring, aesthetic approach.",
 });
 
 const values = [
   { title: "Aesthetic focus", text: "Founded with a passion for beautiful, natural-looking dentistry that boosts confidence." },
-  { title: "Family-friendly", text: "Caring for every generation — from a child's first visit to adult restorative care." },
+  { title: "Comprehensive care", text: "From routine check-ups and preventive care through to advanced restorative treatment." },
   { title: "Modern dentistry", text: "We use the latest materials and technology for comfortable, lasting results." },
   { title: "Patient-first", text: "A safe, friendly environment where your comfort and goals come first." },
 ];
@@ -50,13 +50,13 @@ export default function AboutPage() {
               align="left"
               eyebrow="About Smile Connection"
               title="Caring for Pretoria smiles since 2009"
-              subtitle="Smile Connection Dental Studio has been caring for Newlands and Pretoria families since 2009. Led by dentist Dr Eugene Kleynhans, our team combines aesthetic dentistry with comprehensive, family-focused care."
+              subtitle="Smile Connection Dental Studio has been caring for Newlands and Pretoria smiles since 2009. Led by dentist Dr Eugene Kleynhans, our team combines aesthetic dentistry with comprehensive, patient-focused care."
             />
             <div className="mt-6 flex flex-col gap-4 text-base leading-relaxed text-slate-600 sm:text-lg">
               <p>
                 Based in Newlands, Pretoria, our studio offers the full spectrum of
-                treatment — from preventive check-ups and children&apos;s dentistry to
-                restorative care and cosmetic smile makeovers. Our philosophy is simple:
+                treatment — from preventive check-ups to restorative care and
+                cosmetic smile makeovers. Our philosophy is simple:
                 help every patient look better, feel better and smile brighter.
               </p>
               <p>
