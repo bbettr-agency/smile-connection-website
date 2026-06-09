@@ -58,13 +58,13 @@ export function Hero() {
         <div className="flex flex-col gap-4 animate-fade-up [animation-delay:120ms]">
           <div className="relative">
             <AppImage
-              src="/images/hero/smile-connection-dental-team-newlands-pretoria.jpg"
-              alt="The Smile Connection Dental Studio team, led by dentist Dr Eugene Kleynhans, at their practice in Newlands, Pretoria"
+              src="/images/hero/smile-connection-dental-team-hands-logo-pretoria.jpg"
+              alt="Smile Connection dentists forming the practice's tooth logo with their gloved hands over a dental light box in Newlands, Pretoria"
               ratio="portrait"
               rounded="rounded-3xl"
               className="shadow-soft"
               priority
-              position="center top"
+              position="center"
               sizes="(max-width: 1024px) 100vw, 50vw"
             />
             {/* Floating trust chip */}
