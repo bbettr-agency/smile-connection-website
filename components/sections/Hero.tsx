@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/Button";
-import { ImagePlaceholder } from "@/components/ui/ImagePlaceholder";
+import { AppImage } from "@/components/ui/AppImage";
 import { site } from "@/lib/site";
 import { routes } from "@/lib/routes";
 import { PhoneIcon, WhatsAppIcon, CalendarIcon, CheckIcon, AlertIcon } from "@/components/ui/Icons";
@@ -57,12 +57,15 @@ export function Hero() {
         {/* Imagery + emergency block */}
         <div className="flex flex-col gap-4 animate-fade-up [animation-delay:120ms]">
           <div className="relative">
-            <ImagePlaceholder
-              ratio="tall"
-              label="Hero image — Smile Connection patient / practice (client photoshoot)"
-              alt="PLACEHOLDER — real hero photo of a smiling patient or the Smile Connection Dental Studio practice in Newlands, Pretoria"
+            <AppImage
+              src="/images/hero/smile-connection-dental-team-newlands-pretoria.jpg"
+              alt="The Smile Connection Dental Studio team, led by dentist Dr Eugene Kleynhans, at their practice in Newlands, Pretoria"
+              ratio="portrait"
               rounded="rounded-3xl"
               className="shadow-soft"
+              priority
+              position="center top"
+              sizes="(max-width: 1024px) 100vw, 50vw"
             />
             {/* Floating trust chip */}
             <div className="absolute -bottom-4 left-4 right-4 mx-auto flex max-w-sm items-center gap-3 rounded-2xl border border-navy-50 bg-white/95 p-3 shadow-card backdrop-blur sm:left-6 sm:right-auto">

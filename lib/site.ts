@@ -80,7 +80,7 @@ export const site = {
       // VERIFIED from research: BChD, University of Pretoria (1995), HPCSA registered.
       credentials: "BChD (University of Pretoria, 1995) · HPCSA registered",
       bio: "Dr Eugene Kleynhans qualified with a Bachelor of Dentistry from the University of Pretoria in 1995 and is registered with the Health Professions Council of South Africa (HPCSA).",
-      image: "/images/team/dr-eugene-kleynhans.jpg", // PLACEHOLDER: client photoshoot image
+      image: "/images/team/dr-eugene-kleynhans-dentist-newlands-pretoria.jpg",
       imageAlt: "Dr Eugene Kleynhans, dentist at Smile Connection Dental Studio in Newlands, Pretoria",
     },
     {
@@ -89,8 +89,8 @@ export const site = {
       role: "Oral Hygienist",
       credentials: "Oral Hygienist", // PLACEHOLDER: confirm name & qualifications
       bio: "Bio to be confirmed by client.",
-      image: "/images/team/oral-hygienist.jpg", // PLACEHOLDER: client photoshoot image
-      imageAlt: "PLACEHOLDER — real photo of the oral hygienist at Smile Connection Dental Studio in Newlands, Pretoria",
+      image: "/images/team/smile-connection-oral-hygienist-newlands-pretoria.jpg",
+      imageAlt: "Oral hygienist at Smile Connection Dental Studio in Newlands, Pretoria",
     },
   ],
 
@@ -102,16 +102,16 @@ export const site = {
       role: "Reception & Front Desk",
       credentials: "", // PLACEHOLDER: confirm name
       bio: "Bio to be confirmed by client.",
-      image: "/images/team/receptionist.jpg", // PLACEHOLDER: client photoshoot image
-      imageAlt: "PLACEHOLDER — real photo of the receptionist at Smile Connection Dental Studio in Newlands, Pretoria",
+      image: "/images/team/smile-connection-receptionist-newlands-pretoria.jpg",
+      imageAlt: "Receptionist at the Smile Connection Dental Studio reception desk in Newlands, Pretoria",
     },
     {
       name: "Dental Assistant",
       role: "Dental Assistant",
       credentials: "", // PLACEHOLDER: confirm name
       bio: "Bio to be confirmed by client.",
-      image: "/images/team/dental-assistant.jpg", // PLACEHOLDER: client photoshoot image
-      imageAlt: "PLACEHOLDER — real photo of the dental assistant at Smile Connection Dental Studio in Newlands, Pretoria",
+      image: "/images/team/smile-connection-dental-assistant-newlands-pretoria.jpg",
+      imageAlt: "Dental assistant at Smile Connection Dental Studio in Newlands, Pretoria",
     },
   ],
 

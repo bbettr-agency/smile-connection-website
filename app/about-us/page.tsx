@@ -6,7 +6,7 @@ import { EmergencyBlock } from "@/components/sections/EmergencyBlock";
 import { Reviews } from "@/components/sections/Reviews";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { ImagePlaceholder } from "@/components/ui/ImagePlaceholder";
+import { AppImage } from "@/components/ui/AppImage";
 import { Button } from "@/components/ui/Button";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { CheckIcon } from "@/components/ui/Icons";
@@ -72,16 +72,18 @@ export default function AboutPage() {
             </div>
           </div>
           <div className="grid grid-cols-2 gap-4">
-            <ImagePlaceholder
+            <AppImage
+              src="/images/clinic/smile-connection-reception-area-newlands-pretoria.jpg"
+              alt="The reception area at Smile Connection Dental Studio, branded with the practice logo, in Newlands, Pretoria"
               ratio="tall"
-              label="Practice interior (client photoshoot)"
-              alt="PLACEHOLDER — real photo of the Smile Connection Dental Studio interior in Newlands, Pretoria"
               className="mt-8"
+              position="center"
             />
-            <ImagePlaceholder
+            <AppImage
+              src="/images/clinic/dr-eugene-kleynhans-surgery-newlands-pretoria.jpg"
+              alt="Dr Eugene Kleynhans in a treatment room at Smile Connection Dental Studio in Newlands, Pretoria"
               ratio="tall"
-              label="Friendly dental care (client photoshoot)"
-              alt="PLACEHOLDER — real photo of a Smile Connection dentist with a patient"
+              position="center"
             />
           </div>
         </div>

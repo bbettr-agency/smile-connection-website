@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState, useEffect, useCallback } from "react";
-import { ImagePlaceholder } from "@/components/ui/ImagePlaceholder";
+import { AppImage } from "@/components/ui/AppImage";
 import { galleryCategories, galleryItems, type GalleryItem } from "@/lib/gallery";
 
 /**
@@ -80,11 +80,12 @@ export function GalleryGrid() {
             aria-label={`Open ${item.label}`}
           >
             <div className="relative">
-              <ImagePlaceholder
-                ratio={ratioFor(item)}
-                label={item.label}
+              <AppImage
+                src={item.src}
                 alt={item.alt}
+                ratio={ratioFor(item)}
                 className="transition-transform duration-300 group-hover:scale-[1.02]"
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
               />
               <span className="pointer-events-none absolute left-3 top-3 rounded-full bg-white/90 px-3 py-1 text-[11px] font-bold uppercase tracking-wide text-navy-700 shadow-sm">
                 {item.category}
@@ -120,11 +121,14 @@ export function GalleryGrid() {
             ‹
           </button>
           <div className="w-full max-w-3xl" onClick={(e) => e.stopPropagation()}>
-            <ImagePlaceholder
-              ratio="wide"
-              label={items[lightbox].label}
+            <AppImage
+              src={items[lightbox].src}
               alt={items[lightbox].alt}
+              ratio={ratioFor(items[lightbox])}
+              fit="contain"
+              bg="bg-navy-900/60"
               rounded="rounded-3xl"
+              sizes="(max-width: 768px) 100vw, 768px"
             />
             <p className="mt-3 text-center text-sm font-medium text-white/90">
               {items[lightbox].label} — {items[lightbox].category}

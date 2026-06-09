@@ -27,6 +27,11 @@ export type Service = {
   h1: string;
   heroSubtitle: string;
   heroImageAlt: string;
+  /** Real hero image. Before/after composites live under /images/treatments/. */
+  heroImage?: string;
+  /** Real "who it's for" supporting image + its alt text. */
+  whoForImage?: string;
+  whoForImageAlt?: string;
   intro: string[];
   whoFor: { title: string; points: string[] };
   benefits: { title: string; text: string }[];
@@ -57,7 +62,11 @@ export const services: Service[] = [
     heroSubtitle:
       "Missing one tooth or several? Our Newlands dental studio restores your bite and your confidence with dental implants, bridges and dentures designed to last.",
     heroImageAlt:
-      "PLACEHOLDER — real photo of a tooth replacement / dental implant patient at Smile Connection Dental Studio, Pretoria",
+      "Before and after dental implant tooth replacement by Dr Eugene Kleynhans at Smile Connection Dental Studio, Pretoria",
+    heroImage: "/images/treatments/dental-implants-before-after-smile-connection.jpg",
+    whoForImage: "/images/clinic/dentist-treating-patient-smile-connection-pretoria.jpg",
+    whoForImageAlt:
+      "Dr Eugene Kleynhans and a dental assistant treating a patient at Smile Connection Dental Studio, Pretoria",
     intro: [
       "Losing a tooth affects far more than your smile. Gaps can change the way you chew and speak, place extra strain on neighbouring teeth, and over time lead to bone loss in the jaw. At Smile Connection Dental Studio in Newlands, Pretoria, we replace missing teeth with solutions that look and feel completely natural.",
       "Whether you need a single tooth replaced or a full-arch solution, we take the time to assess your oral health and recommend the option that best suits your needs, budget and long-term wellbeing.",
@@ -114,7 +123,11 @@ export const services: Service[] = [
     heroSubtitle:
       "From a small cavity to a badly damaged tooth, our Newlands studio rebuilds your teeth with durable, natural-looking fillings and crowns.",
     heroImageAlt:
-      "PLACEHOLDER — real photo of a restorative dentistry patient or treatment at Smile Connection Dental Studio, Pretoria",
+      "Before and after dental crowns by Dr Eugene Kleynhans at Smile Connection Dental Studio, Pretoria",
+    heroImage: "/images/treatments/dental-crowns-before-after-smile-connection.jpg",
+    whoForImage: "/images/clinic/smile-connection-dental-treatment-room-pretoria.jpg",
+    whoForImageAlt:
+      "A modern dental treatment room at Smile Connection Dental Studio in Newlands, Pretoria",
     intro: [
       "Damaged, decayed or worn teeth don't just affect how your smile looks — they can cause pain, sensitivity and bigger problems if left untreated. Restorative dentistry repairs your teeth, relieves discomfort and restores full function.",
       "At Smile Connection Dental Studio in Newlands, Pretoria, we use modern materials and technology to repair teeth so they look natural and feel comfortable, helping you eat, speak and smile with ease.",
@@ -171,7 +184,11 @@ export const services: Service[] = [
     heroSubtitle:
       "Cosmetic dentistry tailored to you. Our Newlands studio combines veneers, whitening and more to design a brighter, more confident smile.",
     heroImageAlt:
-      "PLACEHOLDER — real before-and-after smile makeover photo from Smile Connection Dental Studio, Pretoria",
+      "Before and after porcelain veneers smile makeover by Dr Eugene Kleynhans at Smile Connection Dental Studio, Pretoria",
+    heroImage: "/images/treatments/porcelain-veneers-before-after-smile-connection.jpg",
+    whoForImage: "/images/gallery/happy-patient-smile-smile-connection-pretoria.jpg",
+    whoForImageAlt:
+      "A smiling patient with a bright, healthy smile at Smile Connection Dental Studio, Pretoria",
     intro: [
       "A smile makeover is a personalised combination of cosmetic treatments designed to improve the appearance of your smile. Whether you're bothered by staining, chips, gaps or worn teeth, we create a plan that delivers a natural, balanced result that suits your face and personality.",
       "Smile Connection Dental Studio was founded with a focus on aesthetic dentistry, and our team in Newlands, Pretoria uses modern materials and techniques to help you look better, feel better and smile brighter.",
@@ -229,7 +246,11 @@ export const services: Service[] = [
     heroSubtitle:
       "A toothache doesn't have to mean losing the tooth. Our Newlands studio uses gentle, modern root canal therapy to relieve pain and save your natural tooth.",
     heroImageAlt:
-      "PLACEHOLDER — real photo of a calm patient or treatment room at Smile Connection Dental Studio, Pretoria",
+      "A calm, modern treatment room at Smile Connection Dental Studio in Newlands, Pretoria",
+    heroImage: "/images/clinic/smile-connection-dental-surgery-room-pretoria.jpg",
+    whoForImage: "/images/clinic/dr-eugene-kleynhans-surgery-newlands-pretoria.jpg",
+    whoForImageAlt:
+      "Dr Eugene Kleynhans working in a treatment room at Smile Connection Dental Studio, Pretoria",
     intro: [
       "When the soft tissue (the pulp) inside a tooth becomes infected or inflamed, it can cause severe pain and, if left untreated, lead to losing the tooth. Root canal treatment removes the infection, relieves the pain and saves your natural tooth.",
       "Modern root canal therapy at Smile Connection Dental Studio in Newlands, Pretoria is far more comfortable than its reputation suggests. Carried out under local anaesthetic, the goal is simple: get you out of pain and keep your tooth.",
@@ -283,7 +304,11 @@ export const services: Service[] = [
     heroSubtitle:
       "Prevention is the foundation of a healthy smile. Our Newlands studio offers check-ups, professional cleanings and preventive care to keep problems away.",
     heroImageAlt:
-      "PLACEHOLDER — real photo of a dental check-up or hygiene visit at Smile Connection Dental Studio, Pretoria",
+      "A dental check-up in a modern treatment room at Smile Connection Dental Studio, Newlands, Pretoria",
+    heroImage: "/images/clinic/smile-connection-dental-treatment-room-pretoria.jpg",
+    whoForImage: "/images/clinic/dental-instruments-smile-connection-pretoria.jpg",
+    whoForImageAlt:
+      "Modern dental equipment used for check-ups and cleanings at Smile Connection Dental Studio, Pretoria",
     intro: [
       "The healthiest, most affordable dentistry is the kind that stops problems before they start. Preventive dentistry focuses on keeping your teeth and gums healthy through regular check-ups, professional cleanings and early detection of any issues.",
       "At Smile Connection Dental Studio in Newlands, Pretoria, we focus on keeping your teeth and gums healthy for the long term. We generally recommend a dental check-up and cleaning every six months to catch any issues early.",
@@ -341,7 +366,11 @@ export const services: Service[] = [
     heroSubtitle:
       "A beautiful smile is part of a balanced, confident look. Speak to our Newlands team about facial aesthetic options to complement your smile.",
     heroImageAlt:
-      "PLACEHOLDER — real photo representing facial aesthetics / aesthetic care at Smile Connection Dental Studio, Pretoria",
+      "Before and after laser gum pigmentation removal by Dr Eugene Kleynhans at Smile Connection Dental Studio, Pretoria",
+    heroImage: "/images/treatments/laser-gum-pigmentation-removal-smile-connection.jpg",
+    whoForImage: "/images/clinic/dr-eugene-kleynhans-surgery-newlands-pretoria.jpg",
+    whoForImageAlt:
+      "Dr Eugene Kleynhans in a treatment room at Smile Connection Dental Studio, Newlands, Pretoria",
     intro: [
       "Smile Connection Dental Studio was founded with a strong focus on aesthetics — helping patients look better and feel more confident. Facial aesthetics extends that philosophy beyond the teeth to support a naturally balanced, refreshed appearance that frames your smile.",
       "Because facial aesthetic treatments vary from practice to practice, we'd love to discuss exactly what's right for you in person. Contact our Newlands team to find out which facial aesthetic options are available and suitable for your goals.",

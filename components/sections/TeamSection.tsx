@@ -1,5 +1,5 @@
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { ImagePlaceholder } from "@/components/ui/ImagePlaceholder";
+import { AppImage } from "@/components/ui/AppImage";
 import { Button } from "@/components/ui/Button";
 import { site } from "@/lib/site";
 import { routes } from "@/lib/routes";
@@ -39,12 +39,13 @@ export function TeamSection({ variant = "compact" }: { variant?: "compact" | "fu
               key={member.name}
               className="flex flex-col overflow-hidden rounded-3xl border border-navy-50 bg-soft-blue shadow-card"
             >
-              <ImagePlaceholder
-                ratio="square"
-                label={`Photo of ${member.name}`}
+              <AppImage
+                src={member.image}
                 alt={member.imageAlt}
+                ratio="square"
                 rounded="rounded-none"
-                className="border-0 border-b-2"
+                position="center top"
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 360px"
               />
               <div className="flex flex-1 flex-col p-6 sm:p-7">
                 <h3 className="text-xl font-bold text-navy-800 sm:text-2xl">{member.name}</h3>
@@ -64,10 +65,9 @@ export function TeamSection({ variant = "compact" }: { variant?: "compact" | "fu
 
         {full && (
           <p className="mx-auto mt-8 max-w-2xl text-center text-xs italic text-slate-400">
-            Note for the practice: team names, roles and photos marked
-            [PLACEHOLDER] (including the oral hygienist, receptionist and dental
-            assistant) should be confirmed and replaced with verified details and
-            real photoshoot images.
+            Note for the practice: team member names and credentials for the oral
+            hygienist, receptionist and dental assistant can be confirmed and
+            added when ready.
           </p>
         )}
 

@@ -5,6 +5,7 @@ import { FinalCTA } from "@/components/sections/FinalCTA";
 import { Reviews } from "@/components/sections/Reviews";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ImagePlaceholder } from "@/components/ui/ImagePlaceholder";
+import { AppImage } from "@/components/ui/AppImage";
 import { Button } from "@/components/ui/Button";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { ServiceIcon, CheckIcon, ArrowRightIcon, PhoneIcon, WhatsAppIcon, CalendarIcon, AlertIcon } from "@/components/ui/Icons";
@@ -59,13 +60,44 @@ export function ServicePageTemplate({ service }: { service: Service }) {
               </Button>
             </div>
           </div>
-          <ImagePlaceholder
-            ratio="wide"
-            label={`${service.label} — client photoshoot image`}
-            alt={service.heroImageAlt}
-            rounded="rounded-3xl"
-            className="shadow-soft"
-          />
+          {service.heroImage ? (
+            service.heroImage.includes("/treatments/") ? (
+              <figure className="flex flex-col gap-2">
+                <AppImage
+                  src={service.heroImage}
+                  alt={service.heroImageAlt}
+                  ratio="tall"
+                  fit="contain"
+                  bg="bg-white ring-1 ring-navy-50"
+                  rounded="rounded-3xl"
+                  className="shadow-soft"
+                  priority
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                />
+                <figcaption className="text-center text-xs font-medium text-slate-500">
+                  Real {service.label.toLowerCase()} result · Dr Eugene Kleynhans, Smile Connection
+                </figcaption>
+              </figure>
+            ) : (
+              <AppImage
+                src={service.heroImage}
+                alt={service.heroImageAlt}
+                ratio="wide"
+                rounded="rounded-3xl"
+                className="shadow-soft"
+                priority
+                sizes="(max-width: 1024px) 100vw, 50vw"
+              />
+            )
+          ) : (
+            <ImagePlaceholder
+              ratio="wide"
+              label={`${service.label} — client photoshoot image`}
+              alt={service.heroImageAlt}
+              rounded="rounded-3xl"
+              className="shadow-soft"
+            />
+          )}
         </div>
       </section>
 
@@ -123,11 +155,21 @@ export function ServicePageTemplate({ service }: { service: Service }) {
       <section className="bg-soft-blue">
         <div className="container-px py-16 sm:py-20">
           <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-14">
-            <ImagePlaceholder
-              ratio="square"
-              label={`${service.label} — who it's for (client photoshoot)`}
-              alt={`PLACEHOLDER — real photo illustrating who ${service.label.toLowerCase()} at Smile Connection Dental Studio is suitable for`}
-            />
+            {service.whoForImage ? (
+              <AppImage
+                src={service.whoForImage}
+                alt={service.whoForImageAlt ?? service.heroImageAlt}
+                ratio="square"
+                position="center"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+              />
+            ) : (
+              <ImagePlaceholder
+                ratio="square"
+                label={`${service.label} — who it's for (client photoshoot)`}
+                alt={`PLACEHOLDER — real photo illustrating who ${service.label.toLowerCase()} at Smile Connection Dental Studio is suitable for`}
+              />
+            )}
             <div>
               <SectionHeading align="left" eyebrow="Is this for you?" title={service.whoFor.title} />
               <ul className="mt-6 flex flex-col gap-3.5">

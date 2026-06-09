@@ -1,5 +1,5 @@
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { ImagePlaceholder } from "@/components/ui/ImagePlaceholder";
+import { AppImage } from "@/components/ui/AppImage";
 import { Button } from "@/components/ui/Button";
 import { CheckIcon } from "@/components/ui/Icons";
 import { routes } from "@/lib/routes";
@@ -18,16 +18,18 @@ export function AboutSection() {
         <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-14">
           {/* Images */}
           <div className="grid grid-cols-2 gap-4">
-            <ImagePlaceholder
+            <AppImage
+              src="/images/clinic/smile-connection-dental-surgery-room-pretoria.jpg"
+              alt="A modern treatment room at Smile Connection Dental Studio in Newlands, Pretoria"
               ratio="tall"
-              label="Practice / reception photo (client photoshoot)"
-              alt="PLACEHOLDER — real photo of the Smile Connection Dental Studio reception or interior in Newlands, Pretoria"
               className="mt-8"
+              position="center"
             />
-            <ImagePlaceholder
+            <AppImage
+              src="/images/clinic/dentist-treating-patient-smile-connection-pretoria.jpg"
+              alt="Dr Eugene Kleynhans and a dental assistant caring for a patient at Smile Connection Dental Studio"
               ratio="tall"
-              label="Dentist with patient (client photoshoot)"
-              alt="PLACEHOLDER — real photo of a Smile Connection dentist caring for a patient"
+              position="center top"
             />
           </div>
 
