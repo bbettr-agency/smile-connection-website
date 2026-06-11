@@ -9,7 +9,7 @@ import { routes } from "@/lib/routes";
  * full gallery page. Real photoshoot images replace the placeholders later.
  */
 export function GalleryPreview() {
-  const previewIds = ["team-group", "smile-happy", "practice-room", "smile-veneers"];
+  const previewIds = ["team-group", "smile-happy", "practice-room", "practice-model"];
   const preview = previewIds
     .map((id) => galleryItems.find((g) => g.id === id))
     .filter((g): g is (typeof galleryItems)[number] => Boolean(g));

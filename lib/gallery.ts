@@ -26,15 +26,13 @@ export const galleryCategories: GalleryCategory[] = [
 ];
 
 export const galleryItems: GalleryItem[] = [
-  // Smile Transformations — real before & after cases
-  { id: "smile-veneers", category: "Smile Transformations", size: "tall", label: "Porcelain veneers — before & after", alt: "Before and after porcelain veneers smile makeover by Dr Eugene Kleynhans at Smile Connection Dental Studio, Pretoria", src: "/images/treatments/porcelain-veneers-before-after-smile-connection.jpg" },
-  { id: "smile-whitening", category: "Smile Transformations", size: "tall", label: "Teeth whitening — before & after", alt: "Before and after teeth whitening result at Smile Connection Dental Studio in Newlands, Pretoria", src: "/images/treatments/teeth-whitening-before-after-smile-connection.jpg" },
-  { id: "smile-implants", category: "Smile Transformations", size: "tall", label: "Dental implants — before & after", alt: "Before and after dental implant tooth replacement at Smile Connection Dental Studio, Pretoria", src: "/images/treatments/dental-implants-before-after-smile-connection.jpg" },
+  // Smile Transformations
   { id: "smile-happy", category: "Smile Transformations", size: "tall", label: "A happy, healthy smile", alt: "A smiling patient with a bright, healthy smile at Smile Connection Dental Studio in Newlands, Pretoria", src: "/images/gallery/happy-patient-smile-smile-connection-pretoria.jpg" },
 
   // Practice Photos
   { id: "practice-room", category: "Practice Photos", size: "wide", label: "Treatment room", alt: "A modern dental treatment room at Smile Connection Dental Studio, Newlands, Pretoria", src: "/images/clinic/smile-connection-dental-treatment-room-pretoria.jpg" },
   { id: "practice-care", category: "Practice Photos", size: "tall", label: "Patient care in progress", alt: "Dr Eugene Kleynhans and a dental assistant treating a patient at Smile Connection Dental Studio", src: "/images/clinic/dentist-treating-patient-smile-connection-pretoria.jpg" },
+  { id: "practice-model", category: "Practice Photos", size: "wide", label: "Precision dental work", alt: "A Smile Connection dentist holding a dental study model at the practice in Newlands, Pretoria", src: "/images/gallery/smile-connection-dental-study-model-newlands-pretoria.jpg" },
   { id: "practice-instruments", category: "Practice Photos", size: "wide", label: "Modern dental equipment", alt: "Modern dental handpieces and equipment at Smile Connection Dental Studio in Newlands, Pretoria", src: "/images/clinic/dental-instruments-smile-connection-pretoria.jpg" },
   { id: "practice-surgery", category: "Practice Photos", size: "wide", label: "In the surgery", alt: "Dr Eugene Kleynhans working in a treatment room at Smile Connection Dental Studio, Pretoria", src: "/images/clinic/dr-eugene-kleynhans-surgery-newlands-pretoria.jpg" },
 
