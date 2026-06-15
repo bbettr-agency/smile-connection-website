@@ -33,10 +33,18 @@ function resolveWhatsAppUrl(raw?: string | string[]): string {
   if (!value) return fallback;
 
   let candidate = value;
-  try {
-    if (/%[0-9a-fA-F]{2}/.test(candidate)) candidate = decodeURIComponent(candidate);
-  } catch {
-    /* malformed encoding — keep the raw value and let URL parsing decide */
+  // Next.js already decodes the query string once, so GHL's (double-encoded)
+  // WhatsApp link arrives here as a ready-to-use
+  // "https://wa.me/...?text=...%0A..." URL. We must NOT decode it again — that
+  // would turn %0A into real newlines, which the URL parser then strips,
+  // destroying the message line breaks. Only decode when the value isn't yet
+  // an absolute URL (defensive, e.g. if it ever arrives still-encoded).
+  if (!/^https?:\/\//i.test(candidate)) {
+    try {
+      candidate = decodeURIComponent(candidate);
+    } catch {
+      /* malformed encoding — keep the raw value and let URL parsing decide */
+    }
   }
 
   try {
@@ -47,7 +55,9 @@ function resolveWhatsAppUrl(raw?: string | string[]): string {
       host === "whatsapp.com" ||
       host === "api.whatsapp.com" ||
       host.endsWith(".whatsapp.com");
-    if (url.protocol === "https:" && isWhatsApp) return url.toString();
+    // Return the validated original string (not url.toString(), which would
+    // re-encode/strip characters and break the message's encoded newlines).
+    if (url.protocol === "https:" && isWhatsApp) return candidate;
   } catch {
     /* not a valid absolute URL */
   }
