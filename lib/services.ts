@@ -397,14 +397,12 @@ export const services: Service[] = [
       { step: "04", title: "Treatment & review", text: "We carry out your chosen treatment with care and review your results together." },
     ],
     faqs: [
-      { q: "What facial aesthetic treatments do you offer?", a: "Smile Connection was founded with a focus on aesthetics. The specific facial aesthetic treatments available are best confirmed directly with our team — please contact us and we'll be glad to talk you through your options. [PLACEHOLDER: confirm the exact facial aesthetic services the practice offers.]" },
+      { q: "What facial aesthetic treatments do you offer?", a: "Smile Connection was founded with a focus on aesthetics. The specific facial aesthetic treatments available are best confirmed directly with our team — please contact us and we'll be glad to talk you through your options." },
       { q: "How is facial aesthetics related to dentistry?", a: "Dentists have detailed knowledge of facial anatomy, which makes facial aesthetics a natural complement to cosmetic dentistry. Together, they help create a balanced, confident overall appearance." },
       { q: "Will results look natural?", a: "Our philosophy is subtle, natural enhancement. We aim for results that refresh your appearance without looking obvious or overdone." },
       { q: "How do I find out more?", a: "The easiest way is to contact our Newlands practice on 079 471 6319 or via our contact form. We'll happily explain which options are available and suitable for you." },
     ],
     related: ["smile-makeover", "restorative-treatments", "preventive-dentistry"],
-    note:
-      "[PLACEHOLDER] Please confirm the exact facial aesthetic treatments Smile Connection offers so this page can list them specifically. Content here is kept general to avoid stating any service that hasn't been verified.",
   },
 ];
 

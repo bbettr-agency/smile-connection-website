@@ -86,7 +86,7 @@ export const site = {
     {
       name: "Dr Elmien",
       role: "Oral Hygienist",
-      credentials: "Oral Hygienist",
+      credentials: "",
       bio: "",
       image: "/images/team/smile-connection-oral-hygienist-newlands-pretoria.jpg",
       imageAlt: "Oral hygienist at Smile Connection Dental Studio in Newlands, Pretoria",
