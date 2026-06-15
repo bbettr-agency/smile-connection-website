@@ -55,21 +55,13 @@ export function TeamSection({ variant = "compact" }: { variant?: "compact" | "fu
                     {member.credentials}
                   </p>
                 )}
-                {full && (
+                {full && member.bio && (
                   <p className="mt-3 text-sm leading-relaxed text-slate-600">{member.bio}</p>
                 )}
               </div>
             </article>
           ))}
         </div>
-
-        {full && (
-          <p className="mx-auto mt-8 max-w-2xl text-center text-xs italic text-slate-400">
-            Note for the practice: team member names and credentials for the oral
-            hygienist, receptionist and dental assistant can be confirmed and
-            added when ready.
-          </p>
-        )}
 
         <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
           <Button href={routes.contact.path} variant="primary" size="lg">

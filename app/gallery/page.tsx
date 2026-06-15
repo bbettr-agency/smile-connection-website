@@ -35,13 +35,8 @@ export default function GalleryPage() {
           <SectionHeading
             eyebrow="Our Gallery"
             title="Smile transformations & our practice"
-            subtitle="A look at the smiles we help create and the welcoming space we've built in Newlands, Pretoria. The images below are clearly-marked placeholders — the client's real photoshoot photos will replace them."
+            subtitle="A look at the smiles we help create and the welcoming space we've built in Newlands, Pretoria."
           />
-
-          <p className="mx-auto mt-6 max-w-2xl rounded-xl border border-dashed border-navy-200 bg-soft-blue px-4 py-3 text-center text-xs italic text-slate-500">
-            Note: every tile is a labelled placeholder. No stock or fake images are used.
-            Tap any tile to preview the built-in lightbox — it works the same once real photos are added.
-          </p>
 
           <div className="mt-12">
             <GalleryGrid />

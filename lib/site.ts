@@ -84,11 +84,10 @@ export const site = {
       imageAlt: "Dr Eugene Kleynhans, dentist at Smile Connection Dental Studio in Newlands, Pretoria",
     },
     {
-      // PLACEHOLDER: confirm the oral hygienist's name with the client.
-      name: "Oral Hygienist",
+      name: "Dr Elmien",
       role: "Oral Hygienist",
-      credentials: "Oral Hygienist", // PLACEHOLDER: confirm name & qualifications
-      bio: "Bio to be confirmed by client.",
+      credentials: "Oral Hygienist",
+      bio: "",
       image: "/images/team/smile-connection-oral-hygienist-newlands-pretoria.jpg",
       imageAlt: "Oral hygienist at Smile Connection Dental Studio in Newlands, Pretoria",
     },
@@ -98,18 +97,18 @@ export const site = {
   // Names/roles are PLACEHOLDERS for the client to confirm. Do not invent bios.
   supportTeam: [
     {
-      name: "Receptionist",
-      role: "Reception & Front Desk",
-      credentials: "", // PLACEHOLDER: confirm name
-      bio: "Bio to be confirmed by client.",
+      name: "C. De Jager",
+      role: "Receptionist",
+      credentials: "",
+      bio: "",
       image: "/images/team/smile-connection-receptionist-newlands-pretoria.jpg",
       imageAlt: "Receptionist at the Smile Connection Dental Studio reception desk in Newlands, Pretoria",
     },
     {
-      name: "Dental Assistant",
+      name: "Violet",
       role: "Dental Assistant",
-      credentials: "", // PLACEHOLDER: confirm name
-      bio: "Bio to be confirmed by client.",
+      credentials: "",
+      bio: "",
       image: "/images/team/smile-connection-dental-assistant-newlands-pretoria.jpg",
       imageAlt: "Dental assistant at Smile Connection Dental Studio in Newlands, Pretoria",
     },
