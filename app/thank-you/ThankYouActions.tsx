@@ -7,26 +7,47 @@ import { routes } from "@/lib/routes";
 
 /**
  * Client-side actions for the /thank-you bridge page.
- *  - Fires Meta Pixel `Lead` exactly once on load (uses the existing pixel —
- *    no new pixel is installed).
+ *  - Fires Meta Pixel `Lead` exactly once on load — but only once window.fbq
+ *    is actually available. The Meta Pixel base code loads `afterInteractive`,
+ *    so on this page it can initialise *after* this effect runs; we therefore
+ *    poll briefly until `fbq` exists and only then fire (and lock the guard).
  *  - On "Continue to WhatsApp": fires `Contact`, waits briefly so the beacon
  *    dispatches, then navigates to the (already-validated) WhatsApp URL.
+ *
+ * Uses the existing global Meta Pixel — no new pixel is installed.
  */
 export function ThankYouActions({ waUrl }: { waUrl: string }) {
   const leadFired = useRef(false);
 
   useEffect(() => {
-    // --- TEMPORARY DIAGNOSTICS (remove after debugging) ---
-    console.log("ThankYouActions mounted");
-    const hasFbq = typeof window.fbq === "function";
-    console.log("fbq available", hasFbq);
-    // ------------------------------------------------------
-    if (leadFired.current) return; // once per page load
-    leadFired.current = true;
-    window.fbq?.("track", "Lead");
-    console.log(
-      hasFbq ? "Lead fired" : "Lead NOT fired — window.fbq was undefined at mount",
-    );
+    if (leadFired.current) return;
+
+    const RETRY_MS = 250;
+    const MAX_ATTEMPTS = 40; // ~10s ceiling, then give up
+    let attempts = 0;
+    let timer: ReturnType<typeof setInterval> | undefined;
+
+    const fireLead = () => {
+      if (leadFired.current) {
+        if (timer) clearInterval(timer);
+        return;
+      }
+      if (typeof window.fbq === "function") {
+        window.fbq("track", "Lead");
+        leadFired.current = true; // only lock the guard AFTER it actually fires
+        if (timer) clearInterval(timer);
+        return;
+      }
+      attempts += 1;
+      if (attempts >= MAX_ATTEMPTS && timer) clearInterval(timer);
+    };
+
+    fireLead(); // try immediately (fbq may already be ready)
+    if (!leadFired.current) timer = setInterval(fireLead, RETRY_MS);
+
+    return () => {
+      if (timer) clearInterval(timer);
+    };
   }, []);
 
   const handleContinue = () => {
