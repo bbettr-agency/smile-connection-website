@@ -7,10 +7,12 @@ import { routes } from "@/lib/routes";
 
 /**
  * Client-side actions for the /thank-you bridge page.
- *  - Fires Meta Pixel `Lead` exactly once on load — but only once window.fbq
- *    is actually available. The Meta Pixel base code loads `afterInteractive`,
- *    so on this page it can initialise *after* this effect runs; we therefore
- *    poll briefly until `fbq` exists and only then fire (and lock the guard).
+ *  - Fires the Meta Pixel custom event `AppointmentRequest` exactly once on
+ *    load — but only once window.fbq is actually available. The Meta Pixel base
+ *    code loads `afterInteractive`, so on this page it can initialise *after*
+ *    this effect runs; we poll briefly until `fbq` exists and only then fire
+ *    (and lock the guard). We use a custom event because Meta suppresses the
+ *    standard `Lead` event under its health/sensitive-category restrictions.
  *  - On "Continue to WhatsApp": fires `Contact`, waits briefly so the beacon
  *    dispatches, then navigates to the (already-validated) WhatsApp URL.
  *
@@ -33,7 +35,7 @@ export function ThankYouActions({ waUrl }: { waUrl: string }) {
         return;
       }
       if (typeof window.fbq === "function") {
-        window.fbq("track", "Lead");
+        window.fbq("trackCustom", "AppointmentRequest");
         leadFired.current = true; // only lock the guard AFTER it actually fires
         if (timer) clearInterval(timer);
         return;
