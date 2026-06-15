@@ -16,9 +16,17 @@ export function ThankYouActions({ waUrl }: { waUrl: string }) {
   const leadFired = useRef(false);
 
   useEffect(() => {
+    // --- TEMPORARY DIAGNOSTICS (remove after debugging) ---
+    console.log("ThankYouActions mounted");
+    const hasFbq = typeof window.fbq === "function";
+    console.log("fbq available", hasFbq);
+    // ------------------------------------------------------
     if (leadFired.current) return; // once per page load
     leadFired.current = true;
     window.fbq?.("track", "Lead");
+    console.log(
+      hasFbq ? "Lead fired" : "Lead NOT fired — window.fbq was undefined at mount",
+    );
   }, []);
 
   const handleContinue = () => {
