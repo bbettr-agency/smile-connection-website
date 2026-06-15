@@ -5,11 +5,14 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { MobileCTABar } from "@/components/layout/MobileCTABar";
 import { JsonLd } from "@/components/ui/JsonLd";
+import { MetaPixelView } from "@/components/analytics/MetaPixel";
 import { dentistSchema } from "@/lib/schema";
 import { site } from "@/lib/site";
 
 /** Google Tag Manager container ID — loaded globally on every route. */
 const GTM_ID = "GTM-PPBC33D";
+/** Meta Pixel ID — installed directly in code (not via GTM). */
+const META_PIXEL_ID = "1727615574819876";
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -58,6 +61,23 @@ f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','${GTM_ID}');`}
         </Script>
         {/* End Google Tag Manager */}
+
+        {/* Meta Pixel — installed directly in code (NOT via GTM). Loads on
+            every route; fires the initial PageView here, with SPA route-change
+            PageViews handled by <MetaPixelView />. */}
+        <Script id="meta-pixel" strategy="afterInteractive">
+          {`!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '${META_PIXEL_ID}');
+fbq('track', 'PageView');`}
+        </Script>
+        {/* End Meta Pixel */}
       </head>
       <body className="min-h-dvh">
         {/* Google Tag Manager (noscript) — immediately after opening <body> */}
@@ -71,6 +91,22 @@ f.parentNode.insertBefore(j,f);
           />
         </noscript>
         {/* End Google Tag Manager (noscript) */}
+
+        {/* Meta Pixel (noscript fallback) */}
+        <noscript>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            height="1"
+            width="1"
+            style={{ display: "none" }}
+            src={`https://www.facebook.com/tr?id=${META_PIXEL_ID}&ev=PageView&noscript=1`}
+            alt=""
+          />
+        </noscript>
+        {/* End Meta Pixel (noscript) */}
+
+        {/* Fires Meta Pixel PageView on client-side route changes */}
+        <MetaPixelView />
 
         {/* Global LocalBusiness / Dentist schema */}
         <JsonLd data={dentistSchema()} />
