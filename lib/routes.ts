@@ -15,7 +15,7 @@ export type RouteDef = {
 };
 
 export const routes = {
-  home: { path: "/home", label: "Home", inNav: true },
+  home: { path: "/", label: "Home", inNav: true },
   about: { path: "/about-us", label: "About Us", inNav: true },
   services: { path: "/services", label: "Services", inNav: true },
   gallery: { path: "/gallery", label: "Gallery", inNav: true },

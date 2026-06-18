@@ -11,6 +11,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     url: `${site.url}${r.path}`,
     lastModified: now,
     changeFrequency: r.isService ? "monthly" : "weekly",
-    priority: r.path === "/home" ? 1 : r.isService ? 0.8 : 0.7,
+    priority: r.path === "/" ? 1 : r.isService ? 0.8 : 0.7,
   }));
 }

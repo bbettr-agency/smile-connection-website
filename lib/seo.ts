@@ -9,7 +9,7 @@ import { site } from "./site";
 type SeoInput = {
   title: string;
   description: string;
-  path: string; // route path, e.g. "/home"
+  path: string; // route path, e.g. "/" or "/about-us"
   ogTitle?: string;
   ogDescription?: string;
   image?: string;
