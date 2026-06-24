@@ -84,7 +84,7 @@ export const site = {
       imageAlt: "Dr Eugene Kleynhans, dentist at Smile Connection Dental Studio in Newlands, Pretoria",
     },
     {
-      name: "Dr Elmien",
+      name: "Elmien",
       role: "Oral Hygienist",
       credentials: "",
       bio: "",

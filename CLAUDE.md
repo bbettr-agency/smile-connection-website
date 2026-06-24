@@ -29,7 +29,7 @@ Project memory for Claude Code. Keep this current as the site evolves.
 
 ## Team roster (as wired in `lib/site.ts`)
 - **Dr Eugene Kleynhans** — Dentist. BChD (Univ. Pretoria, 1995), HPCSA registered. Has a real bio. Photo: `team/dr-eugene-kleynhans-dentist-newlands-pretoria.jpg`.
-- **Dr Elmien** — role/title **Oral Hygienist** (client-confirmed: the blonde woman with the braid). No credentials line, empty bio. Photo: `team/smile-connection-oral-hygienist-newlands-pretoria.jpg`.
+- **Elmien** — role/title **Oral Hygienist** (client-confirmed: the blonde woman with the braid). Name is "Elmien" (NOT "Dr Elmien" — she is a hygienist, not a dentist). No credentials line, empty bio. Photo: `team/smile-connection-oral-hygienist-newlands-pretoria.jpg`.
 - **C. De Jager** — role/title **Receptionist** (blonde, white top). Empty bio. Photo: `team/smile-connection-receptionist-newlands-pretoria.jpg`.
 - **Violet** — role/title **Dental Assistant**. Empty bio. Photo: `team/smile-connection-dental-assistant-newlands-pretoria.jpg`.
 - Bios for the three support members are intentionally **empty** (`bio: ""`); `TeamSection` only renders a bio when one exists, so empty bios show nothing. Old "Bio to be confirmed by client." placeholders and the "Note for the practice…" team note were removed.
