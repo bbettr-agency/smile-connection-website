@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
@@ -116,6 +117,7 @@ fbq('track', 'PageView');`}
         <main className="pb-20 lg:pb-0">{children}</main>
         <Footer />
         <MobileCTABar />
+        <Analytics />
       </body>
     </html>
   );
