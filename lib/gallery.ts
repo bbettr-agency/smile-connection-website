@@ -3,6 +3,7 @@
  * Images live in /public/images/** and are served responsively via next/image.
  */
 export type GalleryCategory =
+  | "Before & After"
   | "Smile Transformations"
   | "Practice Photos"
   | "Team Photos"
@@ -16,9 +17,13 @@ export type GalleryItem = {
   src: string;
   /** Masonry sizing hint */
   size?: "tall" | "wide" | "square";
+  /** How the image fits its box. Use "contain" for before/after composites so
+   *  the full transformation stays visible (never cropped). Defaults to cover. */
+  fit?: "cover" | "contain";
 };
 
 export const galleryCategories: GalleryCategory[] = [
+  "Before & After",
   "Smile Transformations",
   "Practice Photos",
   "Team Photos",
@@ -26,6 +31,15 @@ export const galleryCategories: GalleryCategory[] = [
 ];
 
 export const galleryItems: GalleryItem[] = [
+  // Before & After — real treatment results. Config-driven: drop a new
+  // before/after composite in /public/images/treatments and add an entry here;
+  // it appears on the homepage showcase AND the gallery "Before & After" filter.
+  { id: "ba-dental-crowns", category: "Before & After", size: "tall", fit: "contain", label: "Dental Crowns", alt: "Before and after dental crowns by Dr Eugene Kleynhans at Smile Connection Dental Studio, Newlands, Pretoria", src: "/images/treatments/dental-crowns-before-after-smile-connection.jpg" },
+  { id: "ba-dental-implants", category: "Before & After", size: "tall", fit: "contain", label: "Dental Implants", alt: "Before and after dental implants tooth replacement at Smile Connection Dental Studio, Newlands, Pretoria", src: "/images/treatments/dental-implants-before-after-smile-connection.jpg" },
+  { id: "ba-gum-pigmentation", category: "Before & After", size: "tall", fit: "contain", label: "Gum Pigmentation Removal", alt: "Before and after laser gum pigmentation removal at Smile Connection Dental Studio, Newlands, Pretoria", src: "/images/treatments/laser-gum-pigmentation-removal-smile-connection.jpg" },
+  { id: "ba-porcelain-veneers", category: "Before & After", size: "tall", fit: "contain", label: "Porcelain Veneers", alt: "Before and after porcelain veneers smile makeover at Smile Connection Dental Studio, Newlands, Pretoria", src: "/images/treatments/porcelain-veneers-before-after-smile-connection.jpg" },
+  { id: "ba-teeth-whitening", category: "Before & After", size: "tall", fit: "contain", label: "Teeth Whitening", alt: "Before and after teeth whitening result at Smile Connection Dental Studio, Newlands, Pretoria", src: "/images/treatments/teeth-whitening-before-after-smile-connection.jpg" },
+
   // Smile Transformations
   { id: "smile-happy", category: "Smile Transformations", size: "tall", label: "A happy, healthy smile", alt: "A smiling patient with a bright, healthy smile at Smile Connection Dental Studio in Newlands, Pretoria", src: "/images/gallery/happy-patient-smile-smile-connection-pretoria.jpg" },
 

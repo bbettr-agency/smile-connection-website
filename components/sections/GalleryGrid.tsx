@@ -84,6 +84,8 @@ export function GalleryGrid() {
                 src={item.src}
                 alt={item.alt}
                 ratio={ratioFor(item)}
+                fit={item.fit ?? "cover"}
+                bg={item.fit === "contain" ? "bg-soft-blue" : ""}
                 className="transition-transform duration-300 group-hover:scale-[1.02]"
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
               />

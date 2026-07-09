@@ -35,7 +35,7 @@ export default function GalleryPage() {
           <SectionHeading
             eyebrow="Our Gallery"
             title="Smile transformations & our practice"
-            subtitle="A look at the smiles we help create and the welcoming space we've built in Newlands, Pretoria."
+            subtitle="See real before-and-after treatment results, the smiles we help create and the welcoming space we've built in Newlands, Pretoria."
           />
 
           <div className="mt-12">

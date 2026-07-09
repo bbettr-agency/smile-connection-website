@@ -5,40 +5,51 @@ import { galleryItems } from "@/lib/gallery";
 import { routes } from "@/lib/routes";
 
 /**
- * Homepage gallery teaser. Shows a few placeholder tiles and links to the
- * full gallery page. Real photoshoot images replace the placeholders later.
+ * Homepage gallery teaser — showcases real before/after treatment results to
+ * build trust and drive enquiries. Config-driven: any gallery item in the
+ * "Before & After" category appears here automatically.
  */
 export function GalleryPreview() {
-  const previewIds = ["team-group", "smile-happy", "practice-room", "practice-model"];
-  const preview = previewIds
-    .map((id) => galleryItems.find((g) => g.id === id))
-    .filter((g): g is (typeof galleryItems)[number] => Boolean(g));
+  const results = galleryItems.filter((g) => g.category === "Before & After");
   return (
     <section className="bg-soft-blue">
       <div className="container-px py-16 sm:py-20">
         <SectionHeading
-          eyebrow="Our Gallery"
-          title="Real smiles, real results"
-          subtitle="A glimpse inside Smile Connection Dental Studio in Newlands, Pretoria — our team, our practice and real patient transformations."
+          eyebrow="Before & After"
+          title="Real results, real smiles"
+          subtitle="See the difference for yourself — real before-and-after results from treatments carried out at our Newlands, Pretoria studio."
         />
 
-        <div className="mt-12 grid grid-cols-2 gap-4 lg:grid-cols-4">
-          {preview.map((item, i) => (
-            <AppImage
+        <div className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-5 lg:grid-cols-5">
+          {results.map((item) => (
+            <figure
               key={item.id}
-              src={item.src}
-              alt={item.alt}
-              ratio={i % 2 === 0 ? "portrait" : "square"}
-              className={i % 2 === 0 ? "" : "sm:mt-8"}
-              position="center top"
-              sizes="(max-width: 1024px) 50vw, 25vw"
-            />
+              className="group flex flex-col overflow-hidden rounded-2xl border border-navy-50 bg-white shadow-card transition-shadow duration-300 hover:shadow-soft"
+            >
+              <AppImage
+                src={item.src}
+                alt={item.alt}
+                ratio="tall"
+                fit={item.fit ?? "contain"}
+                bg="bg-soft-blue"
+                rounded="rounded-none"
+                position="center"
+                sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
+                className="transition-transform duration-300 group-hover:scale-[1.03]"
+              />
+              <figcaption className="px-2 py-3 text-center text-sm font-semibold text-navy-800">
+                {item.label}
+              </figcaption>
+            </figure>
           ))}
         </div>
 
-        <div className="mt-12 flex justify-center">
+        <div className="mt-12 flex flex-col items-center justify-center gap-3 sm:flex-row">
+          <Button href={routes.contact.path} variant="primary" size="lg">
+            Book a Consultation
+          </Button>
           <Button href={routes.gallery.path} variant="secondary" size="lg">
-            View Full Gallery
+            View Gallery
           </Button>
         </div>
       </div>
