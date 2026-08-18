@@ -51,28 +51,6 @@ function hasValidSignature(bytes: Uint8Array): boolean {
   return pdf || zip || ole;
 }
 
-async function verifyTurnstile(token: string, ip: string | null): Promise<boolean> {
-  const secret = process.env.TURNSTILE_SECRET_KEY;
-  if (!secret) {
-    // Fail closed in production; allow in local dev so the flow is testable.
-    return process.env.NODE_ENV !== "production";
-  }
-  if (!token) return false;
-  try {
-    const body = new URLSearchParams({ secret, response: token });
-    if (ip) body.append("remoteip", ip);
-    const res = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
-      method: "POST",
-      headers: { "content-type": "application/x-www-form-urlencoded" },
-      body,
-    });
-    const data = (await res.json()) as { success?: boolean };
-    return data.success === true;
-  } catch {
-    return false;
-  }
-}
-
 export async function POST(request: Request) {
   let form: FormData;
   try {
@@ -92,14 +70,7 @@ export async function POST(request: Request) {
     return fail("We couldn’t submit your application. Please try again.");
   }
 
-  // 3) Cloudflare Turnstile.
-  const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || null;
-  const turnstileOk = await verifyTurnstile(clean(form.get("cf-turnstile-response"), 4000), ip);
-  if (!turnstileOk) {
-    return fail("Verification failed. Please refresh the page and try again.");
-  }
-
-  // 4) Field validation (server-side; whitelist option values).
+  // 3) Field validation (server-side; whitelist option values).
   const fullName = clean(form.get("fullName"), 120);
   const mobile = clean(form.get("mobile"), 40);
   const email = clean(form.get("email"), 160);
@@ -122,7 +93,7 @@ export async function POST(request: Request) {
     return fail("Please answer the GoodX question.");
   if (!area) return fail("Please enter the area/suburb you live in.");
 
-  // 5) CV validation.
+  // 4) CV validation.
   const cv = form.get("cv");
   if (!(cv instanceof File) || cv.size === 0) return fail("Please attach your CV.");
   if (cv.size > MAX_FILE_BYTES) return fail(`Your CV must be ${MAX_FILE_MB} MB or smaller.`);
@@ -138,13 +109,13 @@ export async function POST(request: Request) {
     return fail("That file doesn’t look like a valid PDF, DOC or DOCX. Please try another file.");
   }
 
-  // 6) Email config check (fail cleanly if not yet configured).
+  // 5) Email config check (fail cleanly if not yet configured).
   const apiKey = process.env.RESEND_API_KEY;
   if (!apiKey) {
     return fail("The application service isn’t available right now. Please try again later.", 503);
   }
 
-  // 7) Build + send the email with the CV attached.
+  // 6) Build + send the email with the CV attached.
   const rows: Array<[string, string]> = [
     [EMAIL_FIELD_LABELS.fullName, fullName],
     [EMAIL_FIELD_LABELS.mobile, mobile],

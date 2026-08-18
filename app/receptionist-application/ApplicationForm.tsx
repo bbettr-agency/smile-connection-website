@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import Script from "next/script";
 import {
   EXPERIENCE_OPTIONS,
   YES_NO,
@@ -12,10 +11,6 @@ import {
   isValidMobile,
 } from "@/lib/application";
 import { CheckIcon, AlertIcon } from "@/components/ui/Icons";
-
-/** Public site key. Falls back to Cloudflare's always-passes TEST key for local dev. */
-const TURNSTILE_SITE_KEY =
-  process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || "1x00000000000000000000AA";
 
 const inputCls =
   "w-full rounded-xl border border-navy-100 bg-white px-4 py-3 text-base text-navy-900 shadow-sm outline-none transition placeholder:text-slate-400 focus:border-brand-green focus:ring-4 focus:ring-brand-green/20";
@@ -194,9 +189,7 @@ export function ApplicationForm() {
   }
 
   return (
-    <>
-      <Script src="https://challenges.cloudflare.com/turnstile/v0/api.js" strategy="afterInteractive" />
-      <form ref={formRef} onSubmit={onSubmit} noValidate className="flex flex-col gap-6">
+    <form ref={formRef} onSubmit={onSubmit} noValidate className="flex flex-col gap-6">
         {/* Honeypot — hidden from humans; bots fill it. */}
         <input
           type="text"
@@ -373,9 +366,6 @@ export function ApplicationForm() {
           <FieldError id="cv-error" msg={errors.cv} />
         </div>
 
-        {/* Cloudflare Turnstile widget (injects cf-turnstile-response into the form) */}
-        <div className="cf-turnstile" data-sitekey={TURNSTILE_SITE_KEY} data-theme="light" />
-
         {/* Privacy consent — immediately above submit */}
         <p className="text-xs leading-relaxed text-slate-500">
           By submitting this application, you consent to Smile Connection using the information provided
@@ -399,7 +389,6 @@ export function ApplicationForm() {
         >
           {status === "submitting" ? "Submitting application…" : "Submit Application"}
         </button>
-      </form>
-    </>
+    </form>
   );
 }
