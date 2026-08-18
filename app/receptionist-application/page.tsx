@@ -1,19 +1,20 @@
 import type { Metadata } from "next";
 import { Logo } from "@/components/ui/Logo";
 import { site } from "@/lib/site";
-import { POSITION_TITLE } from "@/lib/application";
-import { ApplicationForm } from "./ApplicationForm";
+import { ApplicationEmbed } from "./ApplicationEmbed";
 
 /**
  * Private recruitment landing page (destination for a Meta Ads campaign).
  * Lives OUTSIDE the app/(site) route group, so it renders WITHOUT the normal
  * site navbar/footer/mobile CTA — just a minimal, focused application flow.
+ * The application form itself is a hosted GoHighLevel embed (fields, CV upload,
+ * submission storage and email/CRM handling all live in GHL).
  * Hidden from search: noindex/nofollow, not in lib/routes.ts (so excluded from
  * nav, footer and the sitemap), and not linked from any public page.
  */
 export const metadata: Metadata = {
-  title: `${POSITION_TITLE} Application`,
-  description: `Apply for the ${POSITION_TITLE} position at Smile Connection Dental Studio.`,
+  title: "Dental Receptionist Application",
+  description: "Apply for the Dental Receptionist position at Smile Connection Dental Studio.",
   robots: {
     index: false,
     follow: false,
@@ -39,7 +40,7 @@ export default function ReceptionistApplicationPage() {
             <div className="text-center">
               <span className="eyebrow w-fit">Careers · Newlands, Pretoria</span>
               <h1 className="mt-4 text-3xl font-bold leading-tight text-navy-900 sm:text-4xl">
-                {POSITION_TITLE} Application
+                Dental Receptionist Application
               </h1>
               <p className="mx-auto mt-3 max-w-xl text-base leading-relaxed text-slate-600">
                 Interested in joining the Smile Connection team? Complete the short application below
@@ -47,8 +48,8 @@ export default function ReceptionistApplicationPage() {
               </p>
             </div>
 
-            <div className="mt-8 rounded-3xl border border-navy-50 bg-white p-6 shadow-card sm:p-8">
-              <ApplicationForm />
+            <div className="mt-8">
+              <ApplicationEmbed />
             </div>
           </div>
         </div>
