@@ -2,12 +2,7 @@ import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
-import { Navbar } from "@/components/layout/Navbar";
-import { Footer } from "@/components/layout/Footer";
-import { MobileCTABar } from "@/components/layout/MobileCTABar";
-import { JsonLd } from "@/components/ui/JsonLd";
 import { MetaPixelView } from "@/components/analytics/MetaPixel";
-import { dentistSchema } from "@/lib/schema";
 import { site } from "@/lib/site";
 
 /** Google Tag Manager container ID — loaded globally on every route. */
@@ -46,6 +41,12 @@ export const viewport: Viewport = {
   maximumScale: 5,
 };
 
+/**
+ * Root layout — global <html>/<body> shell + analytics only.
+ * Site chrome (Navbar/Footer/MobileCTABar + LocalBusiness schema) lives in
+ * app/(site)/layout.tsx, so focused routes outside that group (e.g. the
+ * recruitment landing page) render without the full website navigation.
+ */
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en-ZA">
@@ -106,17 +107,11 @@ fbq('track', 'PageView');`}
         </noscript>
         {/* End Meta Pixel (noscript) */}
 
-        {/* Fires Meta Pixel PageView on client-side route changes */}
+        {/* Fires Meta Pixel PageView on client-side route changes (all routes) */}
         <MetaPixelView />
 
-        {/* Global LocalBusiness / Dentist schema */}
-        <JsonLd data={dentistSchema()} />
+        {children}
 
-        <Navbar />
-        {/* pb-20 keeps content clear of the sticky mobile CTA bar */}
-        <main className="pb-20 lg:pb-0">{children}</main>
-        <Footer />
-        <MobileCTABar />
         <Analytics />
       </body>
     </html>
