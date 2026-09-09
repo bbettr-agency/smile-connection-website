@@ -45,6 +45,16 @@ Project memory for Claude Code. Keep this current as the site evolves.
   - The old GHL `postMessage` Lead listener in `ContactForm.tsx` was **removed** — tracking lives only on `/thank-you` (fires exactly once).
   - **GHL redirect to set:** `https://smileconnection.co.za/thank-you?wa={{whatsapp_merge_url}}` (URL-encode the merge value).
   - In Meta, `AppointmentRequest` is a **custom** event → create a Custom Conversion to optimize/report on it (won't show under standard "Leads").
+- **WhatsApp lead-capture modal (Meta Ads → WhatsApp) — LIVE.** All direct WhatsApp CTAs (Navbar, MobileCTABar, Footer, Hero, FinalCTA, ServicePageTemplate, contact-us) open a small **Name/Email/Phone** modal, then open WhatsApp with a pre-filled message. **WhatsApp must NEVER be blocked/delayed** by lead capture.
+  - `components/whatsapp/WhatsAppLeadProvider.tsx` (`"use client"`, mounted once in `app/(site)/layout.tsx`) — the modal + context. On "Continue to WhatsApp": best-effort `navigator.sendBeacon('/api/whatsapp-lead', json)` (fallback `fetch` `keepalive`), fires `fbq('trackCustom','WhatsAppClick')`, then `window.location.href = buildWhatsAppUrl()` **same-tab** (most reliable in Meta/IG in-app browsers). Nothing awaited.
+  - `components/whatsapp/WhatsAppLink.tsx` (`"use client"`) — CTA used everywhere; renders a real pre-filled `wa.me` anchor and intercepts click → opens modal. **Progressive enhancement:** if JS fails, the anchor still opens WhatsApp (no capture).
+  - `lib/whatsapp.ts` — `WHATSAPP_MESSAGE` ("Hi Smile Connection, I'd like to enquire about booking a dental appointment."), `buildWhatsAppUrl()`, UTM capture→`sessionStorage`.
+  - `components/ui/Button.tsx` exports `buttonClasses(variant,size,className)` so `WhatsAppLink` matches Button styling exactly.
+  - **Server proxy:** `app/api/whatsapp-lead/route.ts` (nodejs, dynamic) forwards clean JSON to the GHL Inbound Webhook via **server-only env `GHL_WHATSAPP_WEBHOOK_URL`** (NEVER in client/source — set in Vercel). Same-origin guard, field whitelist + sanitise, 8KB cap, 5s timeout, **always returns 204** (best-effort; GHL downtime never affects the visitor).
+  - Payload keys (GHL maps these): `first_name, last_name, name, email, phone, source` (`Meta Ads / Website`), `tag` (`Meta Ads - WhatsApp Lead`), `page`, `utm_source/medium/campaign/content`.
+  - **GHL pipeline:** *Patient Enquiries* → stages: New Enquiry / In Conversation / Appointment Booked / Attended (use opportunity Won/Lost **status**, not extra stages). Webhook workflow: Create/Update Contact → Add Tag → Create Opportunity in **New Enquiry**.
+  - Tracking: **`WhatsAppClick` custom event only** (no `WhatsAppLead` — can't confirm capture without delaying WhatsApp). Create a Meta Custom Conversion on `WhatsAppClick` to optimise/report.
+  - ⚠️ My sandbox's **egress proxy blocks `leadconnectorhq.com` and the live domain** (403) — I cannot POST to the GHL webhook or hit the live site from here. Webhook tests / live checks must be run client-side (reqbin.com, curl from your machine, or a live-site click).
 
 
 ## Workflow gotchas (important)
