@@ -1,7 +1,8 @@
-import { Button } from "@/components/ui/Button";
+import { Button, buttonClasses } from "@/components/ui/Button";
 import { site } from "@/lib/site";
 import { routes } from "@/lib/routes";
 import { PhoneIcon, WhatsAppIcon, CalendarIcon, PinIcon, ClockIcon } from "@/components/ui/Icons";
+import { WhatsAppLink } from "@/components/whatsapp/WhatsAppLink";
 
 /**
  * Conversion-focused CTA band shown before the footer on every page.
@@ -30,9 +31,9 @@ export function FinalCTA({
             <Button href={`tel:${site.contact.phoneTel}`} external variant="white" size="lg" className="w-full sm:w-auto">
               <PhoneIcon className="h-5 w-5" /> Call {site.contact.phoneDisplay}
             </Button>
-            <Button href={site.contact.whatsappLink} external variant="secondary" size="lg" className="w-full sm:w-auto">
+            <WhatsAppLink className={buttonClasses("secondary", "lg", "w-full sm:w-auto")}>
               <WhatsAppIcon className="h-5 w-5 text-brand-green" /> WhatsApp
-            </Button>
+            </WhatsAppLink>
           </div>
 
           <div className="mt-10 flex flex-col items-center gap-3 text-sm text-navy-100 sm:flex-row sm:gap-8">

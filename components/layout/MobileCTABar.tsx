@@ -1,6 +1,7 @@
 import { site } from "@/lib/site";
 import { routes } from "@/lib/routes";
 import { PhoneIcon, WhatsAppIcon, CalendarIcon } from "@/components/ui/Icons";
+import { WhatsAppLink } from "@/components/whatsapp/WhatsAppLink";
 
 /**
  * Sticky bottom action bar on mobile only — keeps Call, WhatsApp and Book
@@ -18,16 +19,13 @@ export function MobileCTABar() {
           <PhoneIcon className="h-5 w-5 text-navy-800" />
           Call
         </a>
-        <a
-          href={site.contact.whatsappLink}
-          target="_blank"
-          rel="noopener noreferrer"
+        <WhatsAppLink
           className="flex flex-col items-center justify-center gap-0.5 rounded-xl py-1.5 text-[11px] font-semibold text-brand-green-dark"
-          aria-label="WhatsApp Smile Connection"
+          ariaLabel="WhatsApp Smile Connection"
         >
           <WhatsAppIcon className="h-5 w-5 text-brand-green" />
           WhatsApp
-        </a>
+        </WhatsAppLink>
         <a
           href={routes.contact.path}
           className="flex flex-col items-center justify-center gap-0.5 rounded-xl bg-brand-green py-1.5 text-[11px] font-bold text-white shadow-cta"

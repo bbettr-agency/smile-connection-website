@@ -27,6 +27,12 @@ const sizes: Record<Size, string> = {
   lg: "px-7 py-3.5 text-base",
 };
 
+/** Compose the button's classes — shared so other CTAs (e.g. the WhatsApp lead
+ *  link) render with identical styling. */
+export function buttonClasses(variant: Variant = "primary", size: Size = "lg", className = ""): string {
+  return `${base} ${variants[variant]} ${sizes[size]} ${className}`;
+}
+
 type CommonProps = {
   children: ReactNode;
   variant?: Variant;
@@ -49,7 +55,7 @@ export function Button({
   external,
   ariaLabel,
 }: ButtonAsLink) {
-  const cls = `${base} ${variants[variant]} ${sizes[size]} ${className}`;
+  const cls = buttonClasses(variant, size, className);
   if (external) {
     return (
       <a

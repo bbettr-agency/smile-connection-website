@@ -3,6 +3,7 @@ import { Logo } from "@/components/ui/Logo";
 import { site } from "@/lib/site";
 import { navLinks, serviceLinks, routes } from "@/lib/routes";
 import { PhoneIcon, WhatsAppIcon, MailIcon, PinIcon, ClockIcon } from "@/components/ui/Icons";
+import { WhatsAppLink } from "@/components/whatsapp/WhatsAppLink";
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -21,10 +22,10 @@ export function Footer() {
                 <PhoneIcon className="h-4 w-4 text-brand-green" />
                 {site.contact.phoneDisplay}
               </a>
-              <a href={site.contact.whatsappLink} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-3 hover:text-white">
+              <WhatsAppLink className="inline-flex items-center gap-3 hover:text-white" ariaLabel="WhatsApp Smile Connection">
                 <WhatsAppIcon className="h-4 w-4 text-brand-green" />
                 WhatsApp us
-              </a>
+              </WhatsAppLink>
               <a href={`mailto:${site.contact.email}`} className="inline-flex items-center gap-3 break-all hover:text-white">
                 <MailIcon className="h-4 w-4 text-brand-green" />
                 {site.contact.email}

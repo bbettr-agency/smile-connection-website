@@ -2,6 +2,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { MobileCTABar } from "@/components/layout/MobileCTABar";
 import { JsonLd } from "@/components/ui/JsonLd";
+import { WhatsAppLeadProvider } from "@/components/whatsapp/WhatsAppLeadProvider";
 import { dentistSchema } from "@/lib/schema";
 
 /**
@@ -13,7 +14,7 @@ import { dentistSchema } from "@/lib/schema";
  */
 export default function SiteLayout({ children }: { children: React.ReactNode }) {
   return (
-    <>
+    <WhatsAppLeadProvider>
       {/* Global LocalBusiness / Dentist schema */}
       <JsonLd data={dentistSchema()} />
 
@@ -22,6 +23,6 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
       <main className="pb-20 lg:pb-0">{children}</main>
       <Footer />
       <MobileCTABar />
-    </>
+    </WhatsAppLeadProvider>
   );
 }

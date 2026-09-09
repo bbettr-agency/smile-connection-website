@@ -1,4 +1,5 @@
-import { Button } from "@/components/ui/Button";
+import { Button, buttonClasses } from "@/components/ui/Button";
+import { WhatsAppLink } from "@/components/whatsapp/WhatsAppLink";
 import { AppImage } from "@/components/ui/AppImage";
 import { site } from "@/lib/site";
 import { routes } from "@/lib/routes";
@@ -36,9 +37,9 @@ export function Hero() {
             <Button href={`tel:${site.contact.phoneTel}`} external variant="secondary" size="lg">
               <PhoneIcon className="h-5 w-5" /> Call {site.contact.phoneDisplay}
             </Button>
-            <Button href={site.contact.whatsappLink} external variant="ghost" size="lg">
+            <WhatsAppLink className={buttonClasses("ghost", "lg")}>
               <WhatsAppIcon className="h-5 w-5 text-brand-green" /> WhatsApp
-            </Button>
+            </WhatsAppLink>
           </div>
 
           {/* Trust elements */}

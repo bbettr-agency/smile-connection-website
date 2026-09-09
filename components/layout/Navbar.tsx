@@ -4,7 +4,8 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Logo } from "@/components/ui/Logo";
-import { Button } from "@/components/ui/Button";
+import { Button, buttonClasses } from "@/components/ui/Button";
+import { WhatsAppLink } from "@/components/whatsapp/WhatsAppLink";
 import { navLinks, serviceLinks, routes } from "@/lib/routes";
 import { site } from "@/lib/site";
 import { PhoneIcon, CalendarIcon, ChevronDownIcon } from "@/components/ui/Icons";
@@ -193,9 +194,9 @@ export function Navbar() {
               <Button href={`tel:${site.contact.phoneTel}`} external variant="secondary" size="md" className="w-full">
                 <PhoneIcon className="h-4 w-4" /> Call Us
               </Button>
-              <Button href={site.contact.whatsappLink} external variant="ghost" size="md" className="w-full">
+              <WhatsAppLink className={buttonClasses("ghost", "md", "w-full")} ariaLabel="WhatsApp Smile Connection">
                 WhatsApp
-              </Button>
+              </WhatsAppLink>
             </div>
           </div>
         </div>

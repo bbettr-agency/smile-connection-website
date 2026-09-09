@@ -3,7 +3,8 @@ import { Breadcrumbs } from "@/components/sections/Breadcrumbs";
 import { ContactForm } from "@/components/sections/ContactForm";
 import { EmergencyBlock } from "@/components/sections/EmergencyBlock";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { Button } from "@/components/ui/Button";
+import { Button, buttonClasses } from "@/components/ui/Button";
+import { WhatsAppLink } from "@/components/whatsapp/WhatsAppLink";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { buildMetadata } from "@/lib/seo";
 import { breadcrumbSchema } from "@/lib/schema";
@@ -49,9 +50,9 @@ export default function ContactPage() {
                 <Button href={`tel:${site.contact.phoneTel}`} external variant="secondary" size="lg" className="w-full">
                   <PhoneIcon className="h-5 w-5" /> Call {site.contact.phoneDisplay}
                 </Button>
-                <Button href={site.contact.whatsappLink} external variant="primary" size="lg" className="w-full">
+                <WhatsAppLink className={buttonClasses("primary", "lg", "w-full")} ariaLabel="WhatsApp Smile Connection">
                   <WhatsAppIcon className="h-5 w-5" /> WhatsApp Us
-                </Button>
+                </WhatsAppLink>
               </div>
 
               {/* Info cards */}

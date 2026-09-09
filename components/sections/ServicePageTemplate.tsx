@@ -6,7 +6,8 @@ import { Reviews } from "@/components/sections/Reviews";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ImagePlaceholder } from "@/components/ui/ImagePlaceholder";
 import { AppImage } from "@/components/ui/AppImage";
-import { Button } from "@/components/ui/Button";
+import { Button, buttonClasses } from "@/components/ui/Button";
+import { WhatsAppLink } from "@/components/whatsapp/WhatsAppLink";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { ServiceIcon, CheckIcon, ArrowRightIcon, PhoneIcon, WhatsAppIcon, CalendarIcon, AlertIcon } from "@/components/ui/Icons";
 import { site } from "@/lib/site";
@@ -55,9 +56,9 @@ export function ServicePageTemplate({ service }: { service: Service }) {
               <Button href={`tel:${site.contact.phoneTel}`} external variant="secondary" size="lg">
                 <PhoneIcon className="h-5 w-5" /> Call {site.contact.phoneDisplay}
               </Button>
-              <Button href={site.contact.whatsappLink} external variant="ghost" size="lg">
+              <WhatsAppLink className={buttonClasses("ghost", "lg")}>
                 <WhatsAppIcon className="h-5 w-5 text-brand-green" /> WhatsApp
-              </Button>
+              </WhatsAppLink>
             </div>
           </div>
           {service.heroImage ? (
