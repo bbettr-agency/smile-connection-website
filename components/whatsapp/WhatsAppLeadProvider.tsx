@@ -17,43 +17,47 @@ export function useWhatsAppLead(): Ctx {
 const inputCls =
   "w-full rounded-xl border border-navy-100 bg-white px-4 py-3 text-base text-navy-900 outline-none transition placeholder:text-slate-400 focus:border-brand-green focus:ring-4 focus:ring-brand-green/20";
 
+/** How long the browser waits for our endpoint to CONFIRM the lead was accepted
+ *  by GHL before opening WhatsApp anyway. Keeps WhatsApp fast; only a slow/down
+ *  GHL hits this ceiling (the send continues best-effort via keepalive, just
+ *  uncounted). */
+const ACK_TIMEOUT_MS = 2500;
+
+function buildLeadPayload(name: string, email: string, phone: string) {
+  if (!name && !email && !phone) return null; // nothing worth sending
+  const [first, ...rest] = name.trim().split(/\s+/).filter(Boolean);
+  return {
+    first_name: first ?? "",
+    last_name: rest.join(" "),
+    name: name.trim(),
+    email: email.trim(),
+    phone: phone.trim(),
+    source: "Meta Ads / Website",
+    tag: "Meta Ads - WhatsApp Lead",
+    page: window.location.href,
+    ...getStoredUtms(),
+  };
+}
+
 /**
- * Best-effort lead capture that NEVER blocks the WhatsApp hand-off.
- * Sends via sendBeacon (fallback: fetch keepalive) so the request survives the
- * page navigating to WhatsApp, then returns immediately — nothing is awaited.
+ * Send the lead to our own endpoint and resolve TRUE only when it confirms GHL
+ * accepted it ({ ok: true }). `keepalive` lets the request continue best-effort
+ * during navigation/unload (not guaranteed) if we open WhatsApp before it
+ * resolves. Never throws — a failure/timeout resolves FALSE (unconfirmed, not counted).
  */
-function sendLead(name: string, email: string, phone: string) {
-  if (!name && !email && !phone) return; // nothing worth sending
+async function postLead(payload: Record<string, string>): Promise<boolean> {
   try {
-    const [first, ...rest] = name.trim().split(/\s+/).filter(Boolean);
-    const payload = {
-      first_name: first ?? "",
-      last_name: rest.join(" "),
-      name: name.trim(),
-      email: email.trim(),
-      phone: phone.trim(),
-      source: "Meta Ads / Website",
-      tag: "Meta Ads - WhatsApp Lead",
-      page: window.location.href,
-      ...getStoredUtms(),
-    };
-    const json = JSON.stringify(payload);
-    const url = "/api/whatsapp-lead";
-    const beacon =
-      typeof navigator !== "undefined" && typeof navigator.sendBeacon === "function"
-        ? navigator.sendBeacon(url, new Blob([json], { type: "application/json" }))
-        : false;
-    if (!beacon) {
-      // Fire-and-forget fallback; keepalive lets it outlive the navigation.
-      fetch(url, {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: json,
-        keepalive: true,
-      }).catch(() => {});
-    }
+    const res = await fetch("/api/whatsapp-lead", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify(payload),
+      keepalive: true,
+    });
+    if (!res.ok) return false;
+    const data = (await res.json().catch(() => null)) as { ok?: boolean } | null;
+    return data?.ok === true;
   } catch {
-    /* best-effort only — never block WhatsApp */
+    return false;
   }
 }
 
@@ -85,17 +89,32 @@ export function WhatsAppLeadProvider({ children }: { children: React.ReactNode }
     };
   }, [isOpen, close]);
 
-  const handleContinue = (e: React.FormEvent) => {
+  const handleContinue = async (e: React.FormEvent) => {
     e.preventDefault();
-    // 1) Best-effort capture (does not block).
-    sendLead(name, email, phone);
-    // 2) Meta: WhatsAppClick (custom) — user chose the WhatsApp path.
-    if (typeof window !== "undefined" && typeof window.fbq === "function") {
-      window.fbq("trackCustom", "WhatsAppClick");
+    const waUrl = buildWhatsAppUrl();
+    const fbq = typeof window !== "undefined" ? window.fbq : undefined;
+
+    // Soft behavioural event — always (user chose the WhatsApp path). NOT a Lead.
+    if (typeof fbq === "function") fbq("trackCustom", "WhatsAppClick");
+
+    // Best-effort capture. Fire LeadSubmitted ONLY if our endpoint confirms GHL
+    // accepted the lead within the ack window — but never block WhatsApp beyond it.
+    const payload = buildLeadPayload(name, email, phone);
+    if (payload) {
+      let confirmed = false;
+      const ack = postLead(payload).then((ok) => {
+        confirmed = ok;
+      });
+      await Promise.race([ack, new Promise((r) => setTimeout(r, ACK_TIMEOUT_MS))]);
+      if (confirmed && typeof fbq === "function") {
+        fbq("trackCustom", "LeadSubmitted", { method: "whatsapp" });
+      }
     }
-    // 3) Open WhatsApp immediately (same tab — most reliable in in-app browsers).
+
+    // Open WhatsApp regardless of capture outcome (same tab — most reliable in
+    // Meta/IG in-app browsers). Never blocked.
     setIsOpen(false);
-    window.location.href = buildWhatsAppUrl();
+    window.location.href = waUrl;
   };
 
   return (

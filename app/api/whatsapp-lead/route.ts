@@ -18,11 +18,19 @@ const ALLOWED_KEYS = [
   "utm_medium",
   "utm_campaign",
   "utm_content",
+  "utm_term",
+  "campaign_id",
+  "adset_id",
+  "ad_id",
 ] as const;
 
-/** Always resolve to 204 for the browser — capture is best-effort and must
- *  never surface an error that could interfere with the WhatsApp hand-off. */
-const noContent = () => new NextResponse(null, { status: 204 });
+/**
+ * Reply the browser can act on: { ok } signals whether GHL ACCEPTED the lead
+ * (webhook returned 2xx). The client fires LeadSubmitted only on ok:true.
+ * Errors never throw and never expose internals; a non-ok reply simply means
+ * "not confirmed" — the client still opens WhatsApp regardless.
+ */
+const reply = (ok: boolean, status = 200) => NextResponse.json({ ok }, { status });
 
 function sanitise(value: unknown): string {
   if (typeof value !== "string") return "";
@@ -36,23 +44,23 @@ export async function POST(request: Request) {
   if (origin) {
     try {
       if (new URL(origin).host !== new URL(site.url).host && new URL(origin).host !== request.headers.get("host")) {
-        return noContent();
+        return reply(false, 403);
       }
     } catch {
-      return noContent();
+      return reply(false, 403);
     }
   }
 
-  // Parse the body (sendBeacon sends a JSON blob; fetch sends JSON too).
+  // Parse the body (fetch sends JSON; a sendBeacon fallback would too).
   let raw: unknown;
   try {
     const text = await request.text();
-    if (!text || text.length > 8000) return noContent(); // size cap
+    if (!text || text.length > 8000) return reply(false); // size cap
     raw = JSON.parse(text);
   } catch {
-    return noContent();
+    return reply(false);
   }
-  if (!raw || typeof raw !== "object") return noContent();
+  if (!raw || typeof raw !== "object") return reply(false);
 
   // Whitelist + sanitise fields.
   const src = raw as Record<string, unknown>;
@@ -62,31 +70,33 @@ export async function POST(request: Request) {
     if (v) payload[key] = v;
   }
   // Nothing useful to forward.
-  if (!payload.name && !payload.email && !payload.phone) return noContent();
+  if (!payload.name && !payload.email && !payload.phone) return reply(false);
 
   const webhook = process.env.GHL_WHATSAPP_WEBHOOK_URL;
-  if (!webhook) return noContent(); // not configured yet → silent no-op
+  if (!webhook) return reply(false); // not configured → cannot confirm
 
-  // Forward to GHL with a short timeout. The browser is NOT awaiting this, so
-  // GHL being slow/unavailable can never affect the WhatsApp hand-off.
+  // Forward to GHL. We report ok:true ONLY if GHL accepts (2xx). Short timeout
+  // so a slow/unavailable GHL becomes ok:false rather than hanging.
+  let ok = false;
   try {
     const controller = new AbortController();
     const timer = setTimeout(() => controller.abort(), 5000);
-    await fetch(webhook, {
+    const res = await fetch(webhook, {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(payload),
       signal: controller.signal,
-    }).catch(() => {});
+    });
     clearTimeout(timer);
+    ok = res.ok; // GHL accepted the payload for processing
   } catch {
-    /* swallow — best-effort */
+    ok = false; // timeout / network / abort → not confirmed
   }
 
-  return noContent();
+  return reply(ok);
 }
 
 // Reject other methods quietly.
 export async function GET() {
-  return noContent();
+  return reply(false, 405);
 }

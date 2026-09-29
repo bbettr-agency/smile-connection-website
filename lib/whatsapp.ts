@@ -19,6 +19,10 @@ export const UTM_KEYS = [
   "utm_medium",
   "utm_campaign",
   "utm_content",
+  "utm_term",
+  "campaign_id",
+  "adset_id",
+  "ad_id",
 ] as const;
 
 const UTM_STORAGE_KEY = "sc_utms";
@@ -57,4 +61,10 @@ export function getStoredUtms(): Record<string, string> {
     /* ignore */
   }
   return merged;
+}
+
+/** Stored UTMs as a URL query string ("?utm_source=…") or "" if none. */
+export function getStoredUtmsQuery(): string {
+  const qs = new URLSearchParams(getStoredUtms()).toString();
+  return qs ? `?${qs}` : "";
 }

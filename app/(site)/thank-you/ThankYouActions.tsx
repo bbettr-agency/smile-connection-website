@@ -24,18 +24,43 @@ export function ThankYouActions({ waUrl }: { waUrl: string }) {
   useEffect(() => {
     if (leadFired.current) return;
 
+    // Only a genuine GHL submission redirect should count as a Lead. GHL's
+    // redirect carries `?wa=` (and optionally `?submitted=1`); a direct visit,
+    // reload, bookmark or back-navigation has neither. A one-time session guard
+    // stops the same genuine submission being counted twice (reload/back-nav).
+    const params = new URLSearchParams(window.location.search);
+    const genuineSubmission = params.get("submitted") === "1" || params.has("wa");
+    const SESSION_KEY = "sc_lead_appt_fired";
+    let alreadyCounted = false;
+    try {
+      alreadyCounted = window.sessionStorage.getItem(SESSION_KEY) === "1";
+    } catch {
+      /* storage unavailable */
+    }
+    const shouldFireLead = genuineSubmission && !alreadyCounted;
+
     const RETRY_MS = 250;
     const MAX_ATTEMPTS = 40; // ~10s ceiling, then give up
     let attempts = 0;
     let timer: ReturnType<typeof setInterval> | undefined;
 
-    const fireLead = () => {
+    const fire = () => {
       if (leadFired.current) {
         if (timer) clearInterval(timer);
         return;
       }
       if (typeof window.fbq === "function") {
+        // Behavioural event (unchanged) — fires on every thank-you load.
         window.fbq("trackCustom", "AppointmentRequest");
+        // Lead conversion — only a genuine, not-yet-counted submission.
+        if (shouldFireLead) {
+          window.fbq("trackCustom", "LeadSubmitted", { method: "appointment" });
+          try {
+            window.sessionStorage.setItem(SESSION_KEY, "1");
+          } catch {
+            /* ignore */
+          }
+        }
         leadFired.current = true; // only lock the guard AFTER it actually fires
         if (timer) clearInterval(timer);
         return;
@@ -44,8 +69,8 @@ export function ThankYouActions({ waUrl }: { waUrl: string }) {
       if (attempts >= MAX_ATTEMPTS && timer) clearInterval(timer);
     };
 
-    fireLead(); // try immediately (fbq may already be ready)
-    if (!leadFired.current) timer = setInterval(fireLead, RETRY_MS);
+    fire(); // try immediately (fbq may already be ready)
+    if (!leadFired.current) timer = setInterval(fire, RETRY_MS);
 
     return () => {
       if (timer) clearInterval(timer);

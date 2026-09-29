@@ -2,19 +2,26 @@
 
 import { useEffect, useState } from "react";
 import { site } from "@/lib/site";
+import { getStoredUtmsQuery } from "@/lib/whatsapp";
 
 /**
  * GoHighLevel inline form embed (exact embed supplied by the agency).
  * Loaded as a client component so the form_embed.js script initialises it.
  * The wrapper guards against horizontal overflow on mobile.
  *
+ * Attribution: captured Meta/UTM params (from the landing page / session) are
+ * appended to the iframe URL so the resulting GHL appointment lead retains
+ * attribution — the safest supported passthrough (GHL reads them from the URL).
+ *
  * Conversion tracking note:
- * Meta Pixel `Lead`/`Contact` are fired on the /thank-you bridge page (where
- * GHL redirects after a successful submission), NOT here — this keeps the form
- * embed clean and ensures Lead is counted exactly once.
+ * Meta Pixel `LeadSubmitted(method:"appointment")` / `AppointmentRequest` /
+ * `Contact` are fired on the /thank-you bridge page (where GHL redirects after a
+ * successful submission), NOT here — keeping the embed clean and Lead counted
+ * once per genuine submission.
  */
 export function ContactForm() {
   const [loaded, setLoaded] = useState(false);
+  const [formSrc, setFormSrc] = useState("");
 
   useEffect(() => {
     const SRC = site.embeds.contactFormScript;
@@ -24,6 +31,8 @@ export function ContactForm() {
       s.async = true;
       document.body.appendChild(s);
     }
+    // Append captured attribution to the GHL form URL (client-side only).
+    setFormSrc(`${site.embeds.contactFormSrc}${getStoredUtmsQuery()}`);
     const t = setTimeout(() => setLoaded(true), 600);
     return () => clearTimeout(t);
   }, []);
@@ -36,24 +45,26 @@ export function ContactForm() {
           <span className="text-sm font-medium text-navy-500">Loading booking form…</span>
         </div>
       )}
-      <iframe
-        src={site.embeds.contactFormSrc}
-        id={`inline-${site.embeds.contactFormId}`}
-        title="Dental Consultation Request"
-        style={{ width: "100%", height: "951px", border: "none", borderRadius: "3px" }}
-        data-layout="{'id':'INLINE'}"
-        data-trigger-type="alwaysShow"
-        data-trigger-value=""
-        data-activation-type="alwaysActivated"
-        data-activation-value=""
-        data-deactivation-type="neverDeactivate"
-        data-deactivation-value=""
-        data-form-name="Dental Consultation Request"
-        data-height="951"
-        data-layout-iframe-id={`inline-${site.embeds.contactFormId}`}
-        data-form-id={site.embeds.contactFormId}
-        className="w-full"
-      />
+      {formSrc && (
+        <iframe
+          src={formSrc}
+          id={`inline-${site.embeds.contactFormId}`}
+          title="Dental Consultation Request"
+          style={{ width: "100%", height: "951px", border: "none", borderRadius: "3px" }}
+          data-layout="{'id':'INLINE'}"
+          data-trigger-type="alwaysShow"
+          data-trigger-value=""
+          data-activation-type="alwaysActivated"
+          data-activation-value=""
+          data-deactivation-type="neverDeactivate"
+          data-deactivation-value=""
+          data-form-name="Dental Consultation Request"
+          data-height="951"
+          data-layout-iframe-id={`inline-${site.embeds.contactFormId}`}
+          data-form-id={site.embeds.contactFormId}
+          className="w-full"
+        />
+      )}
     </div>
   );
 }
