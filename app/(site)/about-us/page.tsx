@@ -47,6 +47,7 @@ export default function AboutPage() {
         <div className="container-px grid grid-cols-1 items-center gap-10 py-12 sm:py-16 lg:grid-cols-2 lg:gap-14">
           <div>
             <SectionHeading
+              as="h1"
               align="left"
               eyebrow="About Smile Connection"
               title="Caring for Pretoria smiles since 2009"
@@ -63,6 +64,20 @@ export default function AboutPage() {
                 We believe great dentistry should feel calm, modern and reassuring. That&apos;s
                 why we invest in modern materials and technology, and take the time to
                 understand each patient&apos;s needs and goals.
+              </p>
+              <p className="text-sm text-slate-500">
+                Dr Eugene Kleynhans (BChD, University of Pretoria, 1995) is registered with the
+                Health Professions Council of South Africa. You can verify any practitioner&apos;s
+                registration on the{" "}
+                <a
+                  href="https://isystems.hpcsa.co.za/iregister/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-medium text-navy-800 underline underline-offset-2 hover:text-brand-green-dark"
+                >
+                  HPCSA public register
+                </a>
+                .
               </p>
             </div>
             <div className="mt-8">

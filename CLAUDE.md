@@ -63,6 +63,15 @@ Project memory for Claude Code. Keep this current as the site evolves.
 - **Client sometimes commits images to the repo ROOT** instead of `public/images/...` — move + optimize + SEO-rename them, then `git rm` the root originals.
 - Watch for **duplicate** images (e.g. DSC03340 == existing instruments shot) — skip dupes.
 
+## GEO / SEO (Nov 2026 audit — see `GEO-AUDIT-REPORT.md`)
+- **Canonical host is `https://www.smileconnection.co.za`** (`site.url` in `lib/site.ts`; apex 308s to www). Everything (canonical, og:url, schema, sitemap, robots) derives from it.
+- `site.contentUpdated` (ISO date) drives the "Last updated" line + `MedicalWebPage.dateModified` on service pages and the privacy page date — bump it when copy changes.
+- Schema: Dentist (+`employee` → Person), Person (Dr Kleynhans, verified creds only), WebSite (site layout); MedicalProcedure + MedicalWebPage + FAQPage + Breadcrumb on service pages. Never add AggregateRating/Review or a `reviewedBy` unless real/confirmed.
+- `public/llms.txt` — keep in sync with services/NAP. `/privacy-policy` (POPIA) describes only real data flows; client should have it legally reviewed.
+- Security headers in `next.config.js` `headers()` (no CSP yet — would need GTM/Meta/GHL/SociableKit allowances; start Report-Only).
+- Meta Pixel noscript is rendered via `dangerouslySetInnerHTML` so React doesn't hoist it into a preload.
+- Off-site (client action): WhatClinic/Cylex/SA Business Directory list an OLD address (342 Glenwood Rd, Lynnwood), phone 012 348 4182, "paediatric" care and a "Dr Vilje Truscott" — must be claimed/corrected.
+
 ## Outstanding TODO
 1. **Home About section** — client wanted two specific images there: "image 2" (hands holding an orthodontic braces demo model) + "image 3" (dental light + polishing handpiece, recovered as `gallery/DSC03695.jpg`). **Still blocked:** image 2 keeps arriving as a 2-byte empty file. Need the real file (>100 KB) in `public/images/clinic/` or a direct download link, then pair with image 3. (Image 3 / DSC03538 etc. already used in the gallery.)
 2. **`staff.jpg`** — decide placement or remove (still unused).

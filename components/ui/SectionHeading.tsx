@@ -6,7 +6,7 @@ type Props = {
   subtitle?: ReactNode;
   align?: "left" | "center";
   light?: boolean;
-  as?: "h2" | "h3";
+  as?: "h1" | "h2" | "h3";
 };
 
 export function SectionHeading({

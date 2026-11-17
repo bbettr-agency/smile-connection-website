@@ -92,6 +92,8 @@ export function Footer() {
           <p className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1">
             <Link href={routes.contact.path} className="hover:text-white">Contact</Link>
             <span aria-hidden="true">·</span>
+            <Link href={routes.privacy.path} className="hover:text-white">Privacy Policy</Link>
+            <span aria-hidden="true">·</span>
             <span>Newlands, Pretoria</span>
             <span aria-hidden="true">·</span>
             <span>

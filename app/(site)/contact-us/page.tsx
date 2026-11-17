@@ -39,6 +39,7 @@ export default function ContactPage() {
             {/* Details */}
             <div className="flex flex-col gap-8">
               <SectionHeading
+                as="h1"
                 align="left"
                 eyebrow="Contact Us"
                 title="Book your visit to Smile Connection"

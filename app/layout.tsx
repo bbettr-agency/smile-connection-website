@@ -95,16 +95,13 @@ fbq('track', 'PageView');`}
         {/* End Google Tag Manager (noscript) */}
 
         {/* Meta Pixel (noscript fallback) */}
-        <noscript>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            height="1"
-            width="1"
-            style={{ display: "none" }}
-            src={`https://www.facebook.com/tr?id=${META_PIXEL_ID}&ev=PageView&noscript=1`}
-            alt=""
-          />
-        </noscript>
+        {/* Rendered as raw HTML so React doesn't hoist the <img> into a
+            <link rel="preload"> (which made JS-enabled browsers fetch it too). */}
+        <noscript
+          dangerouslySetInnerHTML={{
+            __html: `<img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=${META_PIXEL_ID}&ev=PageView&noscript=1" />`,
+          }}
+        />
         {/* End Meta Pixel (noscript) */}
 
         {/* Fires Meta Pixel PageView on client-side route changes (all routes) */}

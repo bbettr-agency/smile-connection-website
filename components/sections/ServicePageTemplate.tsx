@@ -13,7 +13,7 @@ import { ServiceIcon, CheckIcon, ArrowRightIcon, PhoneIcon, WhatsAppIcon, Calend
 import { site } from "@/lib/site";
 import { routes } from "@/lib/routes";
 import { services, type Service } from "@/lib/services";
-import { breadcrumbSchema, faqSchema, serviceSchema } from "@/lib/schema";
+import { breadcrumbSchema, faqSchema, medicalWebPageSchema, serviceSchema } from "@/lib/schema";
 
 /**
  * Reusable, SEO + conversion optimised template for every service page.
@@ -28,7 +28,8 @@ export function ServicePageTemplate({ service }: { service: Service }) {
   return (
     <>
       {/* Structured data */}
-      <JsonLd data={serviceSchema({ name: service.h1, description: service.seoDescription, path: service.path })} />
+      <JsonLd data={serviceSchema({ name: service.label, description: service.seoDescription, path: service.path })} />
+      <JsonLd data={medicalWebPageSchema({ name: service.h1, description: service.seoDescription, path: service.path })} />
       <JsonLd data={faqSchema(service.faqs)} />
       <JsonLd
         data={breadcrumbSchema([
@@ -232,6 +233,24 @@ export function ServicePageTemplate({ service }: { service: Service }) {
 
       {/* FAQ (with schema above) */}
       <FAQ items={service.faqs} title={`${service.label}: your questions answered`} />
+
+      {/* Medical information note + freshness */}
+      <section className="bg-white">
+        <div className="container-px pb-4 pt-2">
+          <p className="mx-auto max-w-3xl rounded-2xl border border-navy-50 bg-soft-blue px-5 py-4 text-center text-xs leading-relaxed text-slate-500">
+            This page provides general information about {service.label.toLowerCase()} and is not a
+            substitute for a clinical examination. The right treatment for you depends on an assessment
+            by your dentist. {site.name} is led by Dr Eugene Kleynhans (BChD, University of Pretoria;
+            HPCSA registered).{" "}
+            <span className="whitespace-nowrap">
+              Last updated:{" "}
+              <time dateTime={site.contentUpdated}>
+                {new Date(site.contentUpdated).toLocaleDateString("en-ZA", { month: "long", year: "numeric" })}
+              </time>
+            </span>
+          </p>
+        </div>
+      </section>
 
       {/* Related services — internal linking */}
       {related.length > 0 && (

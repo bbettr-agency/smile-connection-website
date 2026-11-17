@@ -39,6 +39,7 @@ export default function ServicesPage() {
         <div className="container-px py-12 sm:py-16">
           <div className="mx-auto max-w-3xl text-center">
             <SectionHeading
+              as="h1"
               eyebrow="Our Dental Services"
               title="Comprehensive dental care in Newlands, Pretoria"
               subtitle="From a routine check-up to a complete smile makeover, Smile Connection Dental Studio offers the full spectrum of dental care under one roof — using modern materials and technology for comfortable, lasting results."

@@ -7,7 +7,7 @@ import { PhoneIcon, WhatsAppIcon, CalendarIcon, CheckIcon, AlertIcon } from "@/c
 
 const heroTrust = [
   "Trusted Newlands dental studio since 2009",
-  "HPCSA-registered dentists",
+  "HPCSA-registered dentist",
   "Check-ups to cosmetic makeovers",
 ];
 
@@ -60,7 +60,7 @@ export function Hero() {
           <div className="relative">
             <AppImage
               src="/images/hero/smile-connection-dental-team-hands-logo-pretoria.jpg"
-              alt="Smile Connection dentists forming the practice's tooth logo with their gloved hands over a dental light box in Newlands, Pretoria"
+              alt="Smile Connection clinicians forming the practice's tooth logo with their gloved hands over a dental light box in Newlands, Pretoria"
               ratio="portrait"
               rounded="rounded-3xl"
               className="shadow-soft"

@@ -27,6 +27,8 @@ export const routes = {
   rootCanal: { path: "/root-canal-treatment", label: "Root Canal Treatment", isService: true },
   preventive: { path: "/preventive-dentistry", label: "Preventive Dentistry", isService: true },
   facialAesthetics: { path: "/facial-aesthetics", label: "Facial Aesthetics", isService: true },
+
+  privacy: { path: "/privacy-policy", label: "Privacy Policy" },
 } as const satisfies Record<string, RouteDef>;
 
 export const allRoutes: RouteDef[] = Object.values(routes);

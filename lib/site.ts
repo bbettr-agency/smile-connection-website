@@ -18,7 +18,9 @@ export const site = {
   positioning:
     "A premium dental studio in Newlands, Pretoria — offering the full spectrum of care from routine check-ups to advanced cosmetic smile makeovers.",
   founded: "2009",
-  url: "https://smileconnection.co.za",
+  url: "https://www.smileconnection.co.za",
+  // Date the site content was last reviewed/updated (ISO). Bump when copy changes.
+  contentUpdated: "2026-11-17",
   // Logo lives in /public. This is the official Smile Connection artwork.
   logo: "/logo.png",
   ogImage: "/og-image.png", // Branded share image (1200x630) generated from the official logo.

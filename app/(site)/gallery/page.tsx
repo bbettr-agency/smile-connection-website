@@ -33,6 +33,7 @@ export default function GalleryPage() {
       <section className="bg-white">
         <div className="container-px py-12 sm:py-16">
           <SectionHeading
+            as="h1"
             eyebrow="Our Gallery"
             title="Smile transformations & our practice"
             subtitle="See real before-and-after treatment results, the smiles we help create and the welcoming space we've built in Newlands, Pretoria."

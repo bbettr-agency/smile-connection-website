@@ -3,7 +3,7 @@ import { Footer } from "@/components/layout/Footer";
 import { MobileCTABar } from "@/components/layout/MobileCTABar";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { WhatsAppLeadProvider } from "@/components/whatsapp/WhatsAppLeadProvider";
-import { dentistSchema } from "@/lib/schema";
+import { dentistSchema, dentistPersonSchema, websiteSchema } from "@/lib/schema";
 
 /**
  * Site chrome layout — wraps all normal public pages with the full website
@@ -17,6 +17,8 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
     <WhatsAppLeadProvider>
       {/* Global LocalBusiness / Dentist schema */}
       <JsonLd data={dentistSchema()} />
+      <JsonLd data={dentistPersonSchema()} />
+      <JsonLd data={websiteSchema()} />
 
       <Navbar />
       {/* pb-20 keeps content clear of the sticky mobile CTA bar */}
